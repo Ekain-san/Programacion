@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ejercicio1;
+package ejercicio8;
 
 /**
  *
  * @author Asus
  */
-public class NoValidoException {
-
-    public EstadoCivilException expends Exception() 
-    {
-    }
+public class tamañoException extends Exception{
     
 }

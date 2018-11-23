@@ -30,7 +30,7 @@ public class Ejercicio5 {
                 int mes=Integer.parseInt(JOptionPane.showInputDialog("introduce mes"));
                 int año=Integer.parseInt(JOptionPane.showInputDialog("introduce año"));
                 SimpleDateFormat formatter=new SimpleDateFormat("dd/MM/yy"); 
-                Calendar ;
+                String fecha1= ;
             }
           
           catch (Exception e)
