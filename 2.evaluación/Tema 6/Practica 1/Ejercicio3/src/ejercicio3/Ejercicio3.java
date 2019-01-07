@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ejercicio1;
+package ejercicio3;
 
 /**
  *
  * @author Asus
  */
-public class Ejercicio1 {
+public class Ejercicio3 {
 
     /**
      * @param args the command line arguments
