@@ -5,39 +5,53 @@
  */
 package Formas;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Asus
  */
 public class Piloto 
 {
-    private String codigo_piloto;
+     private String codigoPiloto;
     private String nombre;
     private String apellido;
-    private Integer numero_licencia;
-
-    public String getCodigo_piloto() 
-    {
-        return codigo_piloto;
+    private Integer numeroDeLicencia;
+    
+    private ArrayList<Vuelo> listaVuelos = new ArrayList();
+    
+    public void agregar_nuevo(){}
+    
+    public void asignarAVuelo(){}
+    
+    public void cancelarAVuelo(){}
+    
+    public void modificar(){}
+    
+    public Piloto buscar(){
+        return null;
     }
 
-    public void setCodigo_piloto(String codigo_piloto)
-    {
-        this.codigo_piloto = codigo_piloto;
+    public Piloto() {
     }
 
-    public String getNombre()
-    {
+    public String getCodigoPiloto() {
+        return codigoPiloto;
+    }
+
+    public void setCodigoPiloto(String codigoPiloto) {
+        this.codigoPiloto = codigoPiloto;
+    }
+
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre)
-    {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public String getApellido()
-    {
+    public String getApellido() {
         return apellido;
     }
 
@@ -45,33 +59,19 @@ public class Piloto
         this.apellido = apellido;
     }
 
-    public Integer getNumero_licencia()
-    {
-        return numero_licencia;
+    public Integer getNumeroDeLicencia() {
+        return numeroDeLicencia;
     }
 
-    public void setNumero_licencia(Integer numero_licencia) 
-    {
-        this.numero_licencia = numero_licencia;
+    public void setNumeroDeLicencia(Integer numeroDeLicencia) {
+        this.numeroDeLicencia = numeroDeLicencia;
     }
-    
-    public void agregar_nuevo()
-    {
-        
+
+    public ArrayList<Vuelo> getListaVuelos() {
+        return listaVuelos;
     }
-    
-    public void asignar_vuelo()
-    {
-        
-    }
-    
-    public void modificar()
-    {
-        
-    }
-    
-    public Piloto buscar ()
-    {
-        return null;     
+
+    public void setListaVuelos(ArrayList<Vuelo> listaVuelos) {
+        this.listaVuelos = listaVuelos;
     }
 }

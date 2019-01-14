@@ -11,52 +11,63 @@ package Formas;
  */
 public class Asiento 
 {
-  private int numero_asiento;
-  private boolean estado;
-  private String compartimiento;
+ private int numeroAsiento;
+    private Boolean estado;
+    private String compartimento;
+    
+    private Pasajero pasajero;
+    private Vuelo vuelo;
+    
+    public void reservar(){}
+    
+    public void comprar(){}
+    
+    public boolean mostrarDisponibilidad(){
+        return true;
+    }
+    
+    public void desbloquear(){}
 
-    public boolean isEstado() 
-    {
+    public Asiento() {
+    }
+
+    public int getNumeroAsiento() {
+        return numeroAsiento;
+    }
+
+    public void setNumeroAsiento(int numeroAsiento) {
+        this.numeroAsiento = numeroAsiento;
+    }
+
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado)
-    {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
-    public String getCompartimiento()
-    {
-        return compartimiento;
+    public String getCompartimento() {
+        return compartimento;
     }
 
-    public void setCompartimiento(String compartimiento) 
-    {
-        this.compartimiento = compartimiento;
+    public void setCompartimento(String compartimento) {
+        this.compartimento = compartimento;
     }
 
-    public int getNumero_asiento() 
-    {
-        return numero_asiento;
+    public Pasajero getPasajero() {
+        return pasajero;
     }
 
-    public void setNumero_asiento(int numero_asiento)
-    {
-        this.numero_asiento = numero_asiento;
+    public void setPasajero(Pasajero pasajero) {
+        this.pasajero = pasajero;
     }
-    
-   public void reservar ()
-   {
-       
-   }
-   
-    public void comprar ()
-   {
-       
-   }
-    
-   public boolean mostrar_disponivilidad()
-   {
-      return false;      
-   }
+
+    public Vuelo getVuelo() {
+        return vuelo;
+    }
+
+    public void setVuelo(Vuelo vuelo) {
+        this.vuelo = vuelo;
+    }
 }

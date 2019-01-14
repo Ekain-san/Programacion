@@ -5,42 +5,58 @@
  */
 package Formas;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Asus
  */
 public class Ciudad 
 {
-    private String codigo_ciudad;
+   private String codigoCiudad;
     private String nombre;
+    
+    // Lista de vuelos que llegan a la ciudad
+    private ArrayList<Vuelo> listaVuelos;
 
-    public String getCodigo_ciudad() 
-    {
-        return codigo_ciudad;
+    public Ciudad() {
     }
 
-    public void setCodigo_ciudad(String codigo_ciudad) 
-    {
-        this.codigo_ciudad = codigo_ciudad;
+    public String getCodigoCiudad() {
+        return codigoCiudad;
     }
 
-    public String getNombre()
-    {
+    public void setCodigoCiudad(String codigoCiudad) {
+        this.codigoCiudad = codigoCiudad;
+    }
+
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) 
-    {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
-    }  
+    }
+
+    public ArrayList<Vuelo> getListaVuelos() {
+        return listaVuelos;
+    }
+
+    public void setListaVuelos(ArrayList<Vuelo> listaVuelos) {
+        this.listaVuelos = listaVuelos;
+    }
     
-   public void agregar_nuevo ()
-   {
-       
-   }
-   
-   public Ciudad obtener ()
-   {
-       return null;
-   }
+    public void setVuelo(Vuelo v){
+        if (listaVuelos == null)
+            listaVuelos = new ArrayList();
+        this.listaVuelos.add(v);
+    }
+    
+    public void agregarNuevo(){
+        
+    }
+    
+    public Ciudad obtener(){
+        return this;
+    }
 }
