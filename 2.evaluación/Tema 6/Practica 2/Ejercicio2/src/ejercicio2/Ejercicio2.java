@@ -9,25 +9,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import Formas.*;
 import java.util.Arrays;
+import java.util.ArrayList;
 
 /**
  *
  * @author Asus
  */
+
 public class Ejercicio2
 {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) 
-    {
-        // TODO code application logic here
-        private static Estudio[] listaEstudios = new Estudio[5];
-    
-     // Todos las películas que existen en el mundo
     private static ArrayList<Pelicula> listaPeliculas;
-
+    private static ArrayList<Pelicula> listaEstudios;
     public static void main(String[] args) {
       try{
           crearEstudios();
@@ -41,12 +34,11 @@ public class Ejercicio2
           javax.swing.JOptionPane.showMessageDialog(null,e.getClass());
       }
     }
-    
     public static void crearEstudios() throws Exception{
         // Crear objetos de tipo estudio sin películas
         
         // Necesitamos un objeto de tipo SimpleDateFormat para convertir un String en un objeto Date
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         
         // Lista de telefonos
         ArrayList<String> telefonos = new ArrayList();
