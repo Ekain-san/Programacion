@@ -154,9 +154,7 @@ public class VentanaAltaPersona extends javax.swing.JFrame {
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
         JTextField problema = null;
     try{
-         // Validaciones que puede hacer la ventana
-         // Validar el nombre
-         if (Nombre.getText().isEmpty())
+        if (Nombre.getText().isEmpty())
          {
              Nombre.setBackground(Color.red);
              problema = Nombre;
@@ -166,7 +164,6 @@ public class VentanaAltaPersona extends javax.swing.JFrame {
              if (Nombre.getBackground()== Color.red)
                   Nombre.setBackground(Color.white);
          
-         // Si no está vacío compruebo que tiene un formato adecuado.
          Pattern patron = Pattern.compile("^[A-Z][a-z]+( [A-Z][a-z]+)*$");
          Matcher m = patron.matcher(Nombre.getText());
          if (!m.matches()){
@@ -174,14 +171,12 @@ public class VentanaAltaPersona extends javax.swing.JFrame {
              throw new DatoNoValido(1);
          }
          
-         // Validar apellidos
          if (Apellidos.getText().isEmpty())
          {;
              problema = Apellidos;
              throw new DatoObligatorio(2);
          }
          
-         // Si no está vacío compruebo que tiene un formato adecuado.
          patron = Pattern.compile("^[A-Z][a-z]+( [A-Z][a-z]+)+$");
          m = patron.matcher (Apellidos.getText());
          if (!m.matches()){
@@ -189,7 +184,6 @@ public class VentanaAltaPersona extends javax.swing.JFrame {
              throw new DatoNoValido(2);
          }
          
-         // Validamos el dni
          if (DNI.getText().isEmpty())
          {
              problema = DNI;
@@ -202,13 +196,11 @@ public class VentanaAltaPersona extends javax.swing.JFrame {
              throw new DatoNoValido(3);
          }
           
-          // Validar con "base de datos"
          if (Ejercicio2.validarDni(DNI.getText())== false){
              problema = DNI;
              throw new DatoNoValido(4);
          }
          
-         // = tenDatos
          boolean alta = Ejercicio2.altaPersona(Nombre.getText(),Apellidos.getText(),DNI.getText());
          if (alta)
          {

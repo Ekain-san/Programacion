@@ -4,16 +4,21 @@
  * and open the template in the editor.
  */
 package Ventana;
-
-/**
- *
- * @author Asus
- */
+import Errores.*;
 import ejercicio3.Ejercicio3;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 public class VentanaPersona extends javax.swing.JFrame {
-     
+    public boolean modificar = false;
+    public boolean borrar=false;
+    public boolean iguales=false;
     public VentanaPersona() {
         initComponents();
+        Eliminar.setVisible(false);
+        Cambiar.setVisible(false);
+        Nombre.setEnabled(false);
+        Apellidos.setEnabled(false);
+        Curso.setEnabled(false);
     }
 
     /**
@@ -45,6 +50,12 @@ public class VentanaPersona extends javax.swing.JFrame {
         jLabel1.setText("Personas");
 
         jLabel2.setText("DNI:");
+
+        DNI.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                DNIFocusLost(evt);
+            }
+        });
 
         jLabel3.setText("Nombre:");
 
@@ -153,7 +164,7 @@ public class VentanaPersona extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(Curso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Aceptar)
                     .addComponent(Salir))
                 .addGap(63, 63, 63))
@@ -167,25 +178,152 @@ public class VentanaPersona extends javax.swing.JFrame {
     }//GEN-LAST:event_ApellidosActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-        Ejercicio3.salir();
+        Ejercicio3.terminar();
     }//GEN-LAST:event_SalirActionPerformed
 
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
-        // TODO add your handling code here:
+      iguales=Ejercicio3.revisar_dni(iguales, DNI.getText());
+        
+        if (iguales=true)
+        {
+           mostrarDatos();
+           Eliminar.setVisible(true);
+           Cambiar.setVisible(true);
+        }
+       else
+       { 
+            Nombre.setEnabled(true);
+            Apellidos.setEnabled(true);
+            Curso.setEnabled(true);
+            alta();
+       }
     }//GEN-LAST:event_AceptarActionPerformed
-
+private void alta(){ 
+    try{
+          validarDni();
+          
+          if (Ejercicio3.validarDni(DNI.getText()))          
+          {
+              mostrarDatos();
+          }
+          else
+          {
+            Aceptar.setEnabled(true);
+            Nombre.requestFocus();
+          }
+          DNI.setEditable(false);
+              
+      }
+      catch(DatoObligatorio e){
+          javax.swing.JOptionPane.showMessageDialog(this,"El dni es un dato obligatorio");
+          DNI.requestFocus();
+      }
+      catch(DniNoValido e){
+          javax.swing.JOptionPane.showMessageDialog(this,"El dni no es correcto");
+          DNI.requestFocus();
+      }
+      catch(Exception e){
+          javax.swing.JOptionPane.showMessageDialog(this,"Problemas validando el dni");
+      }
+}
     private void CambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CambiarActionPerformed
-        // TODO add your handling code here:
+        Nombre.setEnabled(true);
+        Apellidos.setEnabled(true);
+        Curso.setEnabled(true);
+        modificar=true;
+        if (modificar=true)
+        {
+            modificar();
+        }
     }//GEN-LAST:event_CambiarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        // TODO add your handling code here:
+        borrar=true;
+        if (borrar=true)
+        {
+            borrar();
+        }
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void CursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CursoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CursoActionPerformed
 
+    private void DNIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DNIFocusLost
+         try{
+                validarDni();
+                DNI.setEditable(false);  
+            }
+         
+      catch(DatoObligatorio e){
+          javax.swing.JOptionPane.showMessageDialog(this,"El dni es un dato obligatorio");
+          DNI.requestFocus();
+      }
+      catch(DniNoValido e){
+          javax.swing.JOptionPane.showMessageDialog(this,"El dni no es correcto");
+          DNI.requestFocus();
+      }
+      catch(Exception e){
+          javax.swing.JOptionPane.showMessageDialog(this,"Problemas validando el dni");
+      }
+    }//GEN-LAST:event_DNIFocusLost
+private void validarDni() throws Exception {
+        if (DNI.getText().isEmpty())
+              throw new DatoObligatorio();
+        
+        Pattern pattern=Pattern.compile("(\\d{8})([TRWAGMYFPDXBNJZSQVHLCKEtrwagmyfpdxbnjzsqvhlcke])");
+        Matcher matcher=pattern.matcher(DNI.getText());
+        if(matcher.matches()){
+            String letra=matcher.group(2);
+            String letras="TRWAGMYFPDXBNJZSQVHLCKE";
+            int numero=Integer.parseInt(matcher.group(1));
+            numero=numero%23;
+            String reference=letras.substring(numero,numero+1);
+            if(!reference.equalsIgnoreCase(letra))
+                throw new DniNoValido();
+         }
+        else
+            throw new DniNoValido();
+    }
+    
+    private void borrar() {
+        int respuesta = javax.swing.JOptionPane.showConfirmDialog(this, "¿Estas segur@? Ten en cuenta que los datos se eliminarán definitivamente.");
+        if (respuesta == 0)
+            Ejercicio3.borrarPersona();
+        else
+            Ejercicio3.volverEmpezar();
+}
+
+    private void modificar() {
+    try{
+         if (Curso.getText().isEmpty())
+             throw new DatoObligatorio();
+         if (Ejercicio3.validarCurso(Curso.getText()) == false)
+             throw new CursoNoValido();
+         Ejercicio3.modificarPersona();
+         
+     }
+     catch(DatoObligatorio e){
+          javax.swing.JOptionPane.showMessageDialog(this,"Todos los datos de entrada son obligatorios");
+          Curso.requestFocus();
+      }
+     catch(CursoNoValido e){
+         javax.swing.JOptionPane.showMessageDialog(this,"El curso tecleado no existe");
+         Curso.requestFocus();
+     }
+     catch(Exception e){
+         javax.swing.JOptionPane.showMessageDialog(this,"Problemas en el botón modificar");
+    }
+}
+
+    public void mostrarDatos(){
+        Nombre.setText(Ejercicio3.getPersona().getNombre());
+        Nombre.setEnabled(false);
+        Apellidos.setText(Ejercicio3.getPersona().getApellidos());
+        Apellidos.setEnabled(false);
+        Curso.setText(Ejercicio3.getPersona().getC().getCurso());   
+        Curso.setEnabled(false);
+    }
     /**
      * @param args the command line arguments
      */
@@ -236,4 +374,5 @@ public class VentanaPersona extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
+
 }
