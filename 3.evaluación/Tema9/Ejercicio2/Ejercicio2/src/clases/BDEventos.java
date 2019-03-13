@@ -5,18 +5,31 @@
  */
 package clases;
 
+import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 
 /**
  *
  * @author Asus
  */
 public class BDEventos {
-public void darAlta(Evento E)
+    private Connection con;
+    private Date fechaD;
+    private Time horaTI;
+    private Time horaTF;
+
+    public BDEventos(Connection con) {
+        this.con = con;
+    }  
+public void darAlta(Evento ev)
     {
         try
         {
@@ -24,8 +37,16 @@ public void darAlta(Evento E)
         
         String plantilla = "insert into eventos values (?,?,?,?,?,?);";
         PreparedStatement ps = con.prepareStatement(plantilla);
-        ps.setString(1,p.getNombre());
-        ps.setInt(2,p.getNro());
+        ps.setString(1,ev.getNombre());
+        ps.setString(2,ev.getUbicacion());
+        fechaD=convertidor(ev.getFecha());
+        ps.setDate(3, fechaD);
+        horaTI = convertidorT(ev.getHoraI());
+        ps.setTime(4, horaTI);
+        horaTF = convertidorT(ev.getHoraF());
+        ps.setTime(5, horaTF);
+        ps.setInt(6, Integer.parseInt(ev.getAforo()));
+        
         int n = ps.executeUpdate();
         
         if (n == 0)
@@ -47,11 +68,8 @@ public String consultar(String nombre)
      ps.setString(1,nombre);
      ResultSet resultado = ps.executeQuery();
      if (resultado.next())
-         // Hay datos
          return resultado.getString("nombre") + resultado.getInt(2);
-         // return resultado.getString(1) + resultado.getInt("edad");
-     else
-         // Cero filas seleccionadas
+        else
          return "No hay datos";
     }
     catch(Exception e)
@@ -60,8 +78,35 @@ public String consultar(String nombre)
     }
    }    
 
-    public void cambiar(Evento e, String nombreE) {
+    public void cambiar(Evento ev, String nombreE) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void cancelar(String nombre)
+    {
+        try{
+            String plantilla = "delete * from eventos where nombre = ?;";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setString(1, nombre);
+        }
+        catch(Exception E){
+            
+        }
+        
+    }
+
+    public void cambiar(String nombreE, Evento ev) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public Date convertidor(LocalDate fecha) {
+        Date fechaE = java.sql.Date.valueOf(fecha);
+        return fechaE;
+    }
+    
+    public Time convertidorT(LocalTime hora) {
+        Time horaT = java.sql.Time.valueOf(hora);
+        return horaT;
     }
 }
 

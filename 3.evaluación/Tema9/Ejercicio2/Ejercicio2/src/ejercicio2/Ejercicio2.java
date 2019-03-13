@@ -13,6 +13,8 @@ package ejercicio2;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.sql.*;
+import java.time.ZoneId;
+import javax.swing.JOptionPane;
 public class Ejercicio2 {
 
     /**
@@ -24,7 +26,47 @@ public class Ejercicio2 {
        private static BD bd;
        private static BDEventos bde;
        private static Evento ev;
-       private static Conection con;
+       private static Connection con;
+       private static String otro;
+       private static String estarSeguro;
+
+    public static void cambiar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void cercionar(String ventana) {
+        if(ventana.equals("cambiar") || ventana.equals("cancelar")){
+            boolean esta;
+            esta=comprobar(ventana);
+            if (esta=true){
+            estarSeguro=seguridad();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "ha metido datos no validos");
+            }
+        }
+        if(estarSeguro.equals("sí")){
+            if(ventana.equals("cambiar"))
+                VentanaCambios.cambiar();
+            if(ventana.equals("cancelar"))
+                VentanaCancelar.cancelar();
+            otro=seguir();
+        }
+        
+        else{
+            volverAPrincipal(ventana);
+        }
+        
+        if(otro.equals("no")){
+            volverAPrincipal(ventana);
+        }
+    }
+
+    private static boolean comprobar(String ventana) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+       private Date fechaD;
+
     
     public static void main(String[] args) {
         // TODO code application logic here
@@ -85,11 +127,6 @@ public class Ejercicio2 {
         vp.setVisible(true);
     }
     
-    public void agregar(String nombre, String ubicacion, LocalDate fecha, LocalTime horaI, LocalTime horaF, String aforo){
-        ev= new Evento(nombre,ubicacion, fecha, horaI, horaF, aforo);
-        bde.agregar(ev);
-    }
-    
     public void cancelar(String nombre){
         bde.cancelar(nombre);
     }
@@ -97,6 +134,49 @@ public class Ejercicio2 {
     public void cambiar(String nombreE, String nombre, String ubicacion, LocalDate fecha, LocalTime horaI, LocalTime horaF, String aforo){
     ev= new Evento(nombre,ubicacion, fecha, horaI, horaF, aforo);
     bde.cambiar(nombreE,ev);
-}
+    }
     
+     public void darAlta(String nombre, String ubicacion, LocalDate fecha, LocalTime horaI, LocalTime horaF, String aforo){
+    
+    ev= new Evento(nombre,ubicacion, fecha, horaI, horaF, aforo);
+    bde.darAlta(ev);
+    }
+     
+     public static void buscar(String nombre){
+        bde.consultar(nombre); 
+     }
+     
+      private static String seguridad() {
+        estarSeguro=JOptionPane.showInputDialog("¿Esta seguro? N (no), s (sí)");
+        switch (estarSeguro){
+            case "s": estarSeguro="sí";
+                      break;
+            case "S": estarSeguro="sí";
+                      break;
+            case "n": estarSeguro="no";
+                      break;
+            case "N": estarSeguro="no";
+                      break;
+            default: estarSeguro="no";
+                      break;
+        }; 
+        return estarSeguro;
+    }
+
+    private static String seguir() {
+        otro=JOptionPane.showInputDialog("¿Desea hacer más? N (no), s (sí)");
+        switch (otro){
+            case "s": otro="sí";
+                      break;
+            case "S": otro="sí";
+                      break;
+            case "n": otro="no";
+                      break;
+            case "N": otro="no";
+                      break;
+            default: otro="no";
+                      break;
+        }; 
+        return estarSeguro;
+    }
 }

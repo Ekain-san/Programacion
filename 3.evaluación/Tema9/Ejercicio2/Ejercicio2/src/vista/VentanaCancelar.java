@@ -14,6 +14,10 @@ import javax.swing.JOptionPane;
  */
 public class VentanaCancelar extends javax.swing.JFrame {
 
+    public static void cancelar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * Creates new form VentanaCancelar
      */
@@ -78,59 +82,13 @@ public class VentanaCancelar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private String otro;
-    private String estarSeguro;
+ 
     private void Aceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Aceptar1ActionPerformed
-    estarSeguro=seguridad();
-        
-        if(estarSeguro.equals("sí")){
-            Ejercicio2.cambiar();
-            otro=seguir();
-        }
-        
-        else{
-            otro=seguir();
-        }
-        
-        if(otro.equals("no")){
-            String ventana="cancelar";
-            Ejercicio2.volverAPrincipal(ventana);
-        }
+
+        String ventana="cancelar";
+        Ejercicio2.cercionar(ventana);
     }//GEN-LAST:event_Aceptar1ActionPerformed
 
-    private String seguridad() {
-        estarSeguro=JOptionPane.showInputDialog("¿Esta seguro? N (no), s (sí)");
-        switch (estarSeguro){
-            case "s": estarSeguro="sí";
-                      break;
-            case "S": estarSeguro="sí";
-                      break;
-            case "n": estarSeguro="no";
-                      break;
-            case "N": estarSeguro="no";
-                      break;
-            default: estarSeguro="no";
-                      break;
-        }; 
-        return estarSeguro;
-    }
-
-    private String seguir() {
-        otro=JOptionPane.showInputDialog("¿Desea hacer más? N (no), s (sí)");
-        switch (otro){
-            case "s": otro="sí";
-                      break;
-            case "S": otro="sí";
-                      break;
-            case "n": otro="no";
-                      break;
-            case "N": otro="no";
-                      break;
-            default: otro="no";
-                      break;
-        }; 
-        return estarSeguro;
-    }
     /**
      * @param args the command line arguments
      */

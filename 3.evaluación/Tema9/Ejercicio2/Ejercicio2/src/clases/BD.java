@@ -20,7 +20,7 @@ private Connection con;
         try{
             Class.forName("com.mysql.jdbc.Driver");
             
-            String url="jdbc:mysql://localhost:3307/"+"Eventos";
+            String url="jdbc:mysql://localhost:3306/"+"Eventos";
             String usuario = "root";
             String pass = "usbw";
             con = DriverManager.getConnection (url,usuario,pass);

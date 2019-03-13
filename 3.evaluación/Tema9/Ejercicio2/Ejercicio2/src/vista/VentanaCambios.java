@@ -14,6 +14,10 @@ import javax.swing.JOptionPane;
  */
 public class VentanaCambios extends javax.swing.JFrame {
 
+    public static void cambiar() {
+        Ejercicio2.cambiar(nombreE,nombre,ubicacion, fecha, horaI, horaF, aforo);
+    }
+
     /**
      * Creates new form VentanaCambios
      */
@@ -51,13 +55,16 @@ public class VentanaCambios extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         SHInicio = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        HoraI = new com.github.lgooddatepicker.components.TimePicker();
         SAforo = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         Aforo = new javax.swing.JTextField();
         SHFinal = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
+        HoraF = new com.github.lgooddatepicker.components.TimePicker();
         SFecha = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        Fecha = new com.github.lgooddatepicker.components.DatePicker();
         jLabel1 = new javax.swing.JLabel();
         NombreE = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -93,7 +100,7 @@ public class VentanaCambios extends javax.swing.JFrame {
             .addGroup(SNombreLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Label1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -117,8 +124,8 @@ public class VentanaCambios extends javax.swing.JFrame {
             .addGroup(SUbicacionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
-                .addGap(113, 113, 113)
-                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         SUbicacionLayout.setVerticalGroup(
@@ -140,13 +147,17 @@ public class VentanaCambios extends javax.swing.JFrame {
             .addGroup(SHInicioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(HoraI, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         SHInicioLayout.setVerticalGroup(
             SHInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SHInicioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
+                .addGroup(SHInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(HoraI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -160,8 +171,8 @@ public class VentanaCambios extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Aforo, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addComponent(Aforo, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         SAforoLayout.setVerticalGroup(
             SAforoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,13 +193,17 @@ public class VentanaCambios extends javax.swing.JFrame {
             .addGroup(SHFinalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(HoraF, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         SHFinalLayout.setVerticalGroup(
             SHFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SHFinalLayout.createSequentialGroup()
                 .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jLabel10)
+                .addGroup(SHFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(HoraF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -201,21 +216,25 @@ public class VentanaCambios extends javax.swing.JFrame {
             .addGroup(SFechaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         SFechaLayout.setVerticalGroup(
             SFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SFechaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5)
+                .addGroup(SFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setText("Introduzca nombre del evento ");
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel3.setText("¿Qué desea cambiar?");
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
 
         CNombre.setText("Nombre");
         CNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -341,15 +360,15 @@ public class VentanaCambios extends javax.swing.JFrame {
                 .addComponent(SNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SHInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SHFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SAforo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(54, 54, 54)
                 .addComponent(Aceptar)
                 .addGap(15, 15, 15))
         );
@@ -384,21 +403,8 @@ public class VentanaCambios extends javax.swing.JFrame {
     }//GEN-LAST:event_CAforoActionPerformed
 
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
-        estarSeguro=seguridad();
-        
-        if(estarSeguro.equals("sí")){
-            Ejercicio2.cambiar(NombreE.getText(),Nombre.getText(), fecha, horaI, horaF, Aforo.getText());
-            otro=seguir();
-        }
-        
-        else{
-            otro=seguir();
-        }
-        
-        if(otro.equals("no")){
-            String ventana="cambios";
-            Ejercicio2.volverAPrincipal(ventana);
-        }
+        String ventana="cambiar";
+        Ejercicio2.cercionar(ventana);
             
     }//GEN-LAST:event_AceptarActionPerformed
 
@@ -447,6 +453,9 @@ public class VentanaCambios extends javax.swing.JFrame {
     private javax.swing.JCheckBox CNombre;
     private javax.swing.JCheckBox CUbicacion;
     private javax.swing.ButtonGroup Elemento;
+    private com.github.lgooddatepicker.components.DatePicker Fecha;
+    private com.github.lgooddatepicker.components.TimePicker HoraF;
+    private com.github.lgooddatepicker.components.TimePicker HoraI;
     private javax.swing.JLabel Label1;
     private javax.swing.JTextField Nombre;
     private javax.swing.JTextField NombreE;
@@ -471,37 +480,4 @@ public class VentanaCambios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 
-    private String seguridad() {
-        estarSeguro=JOptionPane.showInputDialog("¿Esta seguro? N (no), s (sí)");
-        switch (estarSeguro){
-            case "s": estarSeguro="sí";
-                      break;
-            case "S": estarSeguro="sí";
-                      break;
-            case "n": estarSeguro="no";
-                      break;
-            case "N": estarSeguro="no";
-                      break;
-            default: estarSeguro="no";
-                      break;
-        }; 
-        return estarSeguro;
-    }
-
-    private String seguir() {
-        otro=JOptionPane.showInputDialog("¿Desea hacer más? N (no), s (sí)");
-        switch (otro){
-            case "s": otro="sí";
-                      break;
-            case "S": otro="sí";
-                      break;
-            case "n": otro="no";
-                      break;
-            case "N": otro="no";
-                      break;
-            default: otro="no";
-                      break;
-        }; 
-        return estarSeguro;
-    }
 }
