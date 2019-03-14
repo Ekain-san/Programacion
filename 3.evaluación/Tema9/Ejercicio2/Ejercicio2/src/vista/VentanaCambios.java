@@ -6,16 +6,21 @@
 package vista;
 
 import ejercicio2.Ejercicio2;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.regex.Matcher;
 import javax.swing.JOptionPane;
+import java.util.regex.Pattern;
 
 /**
  *
  * @author Asus
  */
 public class VentanaCambios extends javax.swing.JFrame {
-
-    public static void cambiar() {
-        Ejercicio2.cambiar(nombreE,nombre,ubicacion, fecha, horaI, horaF, aforo);
+    
+    private Pattern patl=Pattern.compile("^[A-Z][a-z]{0,9}$");
+    public void cambiar() {
+        Ejercicio2.cambiar(Nombre.getText(),ubicacion, Fecha.getDate(), HoraI.getTime(), HoraF.getTime(), Aforo.getText());
     }
 
     /**
@@ -30,6 +35,7 @@ public class VentanaCambios extends javax.swing.JFrame {
         SAforo.setVisible(false);
         SFecha.setVisible(false);
         SUbicacion.setVisible(false);
+        rellenar();
     }
 
     /**
@@ -52,7 +58,7 @@ public class VentanaCambios extends javax.swing.JFrame {
         Nombre = new javax.swing.JTextField();
         SUbicacion = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        Ubicacion = new javax.swing.JComboBox<>();
         SHInicio = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         HoraI = new com.github.lgooddatepicker.components.TimePicker();
@@ -93,6 +99,12 @@ public class VentanaCambios extends javax.swing.JFrame {
 
         Label1.setText("Nombre el evento");
 
+        Nombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                NombreFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout SNombreLayout = new javax.swing.GroupLayout(SNombre);
         SNombre.setLayout(SNombreLayout);
         SNombreLayout.setHorizontalGroup(
@@ -115,7 +127,12 @@ public class VentanaCambios extends javax.swing.JFrame {
 
         jLabel8.setText("Ubicación");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", " " }));
+        Ubicacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", " " }));
+        Ubicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbicacionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout SUbicacionLayout = new javax.swing.GroupLayout(SUbicacion);
         SUbicacion.setLayout(SUbicacionLayout);
@@ -125,7 +142,7 @@ public class VentanaCambios extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         SUbicacionLayout.setVerticalGroup(
@@ -134,11 +151,17 @@ public class VentanaCambios extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(SUbicacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53))
         );
 
         jLabel7.setText("Hora de inicio");
+
+        HoraI.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                HoraIFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout SHInicioLayout = new javax.swing.GroupLayout(SHInicio);
         SHInicio.setLayout(SHInicioLayout);
@@ -163,6 +186,12 @@ public class VentanaCambios extends javax.swing.JFrame {
 
         jLabel9.setText("Aforo");
 
+        Aforo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                AforoFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout SAforoLayout = new javax.swing.GroupLayout(SAforo);
         SAforo.setLayout(SAforoLayout);
         SAforoLayout.setHorizontalGroup(
@@ -185,6 +214,12 @@ public class VentanaCambios extends javax.swing.JFrame {
         );
 
         jLabel10.setText("Hora de final");
+
+        HoraF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                HoraFFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout SHFinalLayout = new javax.swing.GroupLayout(SHFinal);
         SHFinal.setLayout(SHFinalLayout);
@@ -209,6 +244,12 @@ public class VentanaCambios extends javax.swing.JFrame {
 
         jLabel5.setText("Fecha");
 
+        Fecha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                FechaFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout SFechaLayout = new javax.swing.GroupLayout(SFecha);
         SFecha.setLayout(SFechaLayout);
         SFechaLayout.setHorizontalGroup(
@@ -232,6 +273,12 @@ public class VentanaCambios extends javax.swing.JFrame {
 
         jLabel1.setText("Introduzca nombre del evento ");
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+
+        NombreE.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                NombreEFocusLost(evt);
+            }
+        });
 
         jLabel3.setText("¿Qué desea cambiar?");
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -375,8 +422,12 @@ public class VentanaCambios extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private String estarSeguro;
-    private String otro;
+    private String ventana="cambiar";
+    private String tipo;
+    private String valor;
+    private String ubicacion;
+    private LocalDate dia;
+    private LocalTime hora;
     
     private void CNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CNombreActionPerformed
         SNombre.setVisible(true);
@@ -403,10 +454,53 @@ public class VentanaCambios extends javax.swing.JFrame {
     }//GEN-LAST:event_CAforoActionPerformed
 
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
-        String ventana="cambiar";
-        Ejercicio2.cercionar(ventana);
-            
+        Ejercicio2.cercionar(ventana);          
     }//GEN-LAST:event_AceptarActionPerformed
+
+    private void UbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbicacionActionPerformed
+        if(){
+            ubicacion=;
+        }
+        tipo="ubicacion";
+        valor=ubicacion;
+        comprobar(tipo, ventana, valor);
+    }//GEN-LAST:event_UbicacionActionPerformed
+
+    private void NombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreFocusLost
+        tipo="nombre";
+        valor=Nombre.getText();
+        comprobar(tipo, ventana, valor);
+    }//GEN-LAST:event_NombreFocusLost
+
+    private void NombreEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreEFocusLost
+        tipo="nombre";
+        ventana="cambiar2";
+        valor=Nombre.getText();
+        comprobar(tipo, ventana, valor);
+    }//GEN-LAST:event_NombreEFocusLost
+
+    private void AforoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_AforoFocusLost
+        tipo="nombre";
+        valor=Nombre.getText();
+        comprobar(tipo, ventana, valor);
+    }//GEN-LAST:event_AforoFocusLost
+
+    private void FechaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FechaFocusLost
+        dia = Fecha.getDate();
+        Ejercicio2.comprobarD(dia);
+    }//GEN-LAST:event_FechaFocusLost
+
+    private void HoraIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_HoraIFocusLost
+        hora=HoraI.getTime();
+        tipo="horaI";
+        Ejercicio2.ComprobarH(tipo,hora);
+    }//GEN-LAST:event_HoraIFocusLost
+
+    private void HoraFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_HoraFFocusLost
+        hora=HoraF.getTime();
+        tipo="horaF";
+        Ejercicio2.ComprobarH(tipo,hora);
+    }//GEN-LAST:event_HoraFFocusLost
 
     /**
      * @param args the command line arguments
@@ -465,9 +559,9 @@ public class VentanaCambios extends javax.swing.JFrame {
     private javax.swing.JPanel SHInicio;
     private javax.swing.JPanel SNombre;
     private javax.swing.JPanel SUbicacion;
+    private javax.swing.JComboBox<String> Ubicacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -479,5 +573,19 @@ public class VentanaCambios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
+private void comprobar(String tipo, String ventana, String valor) {
+        
+        if (valor.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Rellena el apartado de "+tipo);
+        }
+        else{
+            Matcher matl=patl.matcher(valor);
+            Ejercicio2.comprobar(ventana, tipo);
+        }
+    }
 
+    private void rellenar() {
+        ubicacion=Ejercicio2.tomarUbicacion();
+        Ubicacion.addItem(ubicacion); 
+    }
 }

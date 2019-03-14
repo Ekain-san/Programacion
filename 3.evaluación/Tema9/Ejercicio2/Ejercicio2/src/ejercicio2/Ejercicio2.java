@@ -29,13 +29,14 @@ public class Ejercicio2 {
        private static Connection con;
        private static String otro;
        private static String estarSeguro;
+       private static String ubicacion;
 
     public static void cambiar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public static void cercionar(String ventana) {
-        if(ventana.equals("cambiar") || ventana.equals("cancelar")){
+        if(ventana.equals("cambiar") ||ventana.equals("alta")|| ventana.equals("cancelar")){
             boolean esta;
             esta=comprobar(ventana);
             if (esta=true){
@@ -47,9 +48,11 @@ public class Ejercicio2 {
         }
         if(estarSeguro.equals("sí")){
             if(ventana.equals("cambiar"))
-                VentanaCambios.cambiar();
+                vca.cambiar();
             if(ventana.equals("cancelar"))
-                VentanaCancelar.cancelar();
+                vc.cancelar();
+                if(ventana.equals("agregar"))
+                vd.agregar();
             otro=seguir();
         }
         
@@ -65,7 +68,6 @@ public class Ejercicio2 {
     private static boolean comprobar(String ventana) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-       private Date fechaD;
 
     
     public static void main(String[] args) {
@@ -126,24 +128,32 @@ public class Ejercicio2 {
         bd.desconectar();
         vp.setVisible(true);
     }
+
+    public static void comprobar(String tipo, String ventana, String valor, String nombre) {
+        String dato; 
+        dato= bde.sacarDato(tipo, nombre);
+        
+        if(dato.equals(valor) && ventana.equals("alta"))
+            JOptionPane.showMessageDialog(null, "");
+    }
     
-    public void cancelar(String nombre){
+    public static void cancelar(String nombre){
         bde.cancelar(nombre);
     }
     
-    public void cambiar(String nombreE, String nombre, String ubicacion, LocalDate fecha, LocalTime horaI, LocalTime horaF, String aforo){
+    public static void cambiar(String nombre, String ubicacion, LocalDate fecha, LocalTime horaI, LocalTime horaF, String aforo){
     ev= new Evento(nombre,ubicacion, fecha, horaI, horaF, aforo);
-    bde.cambiar(nombreE,ev);
+    bde.cambiar(ev);
     }
     
-     public void darAlta(String nombre, String ubicacion, LocalDate fecha, LocalTime horaI, LocalTime horaF, String aforo){
+     public static void darAlta(String nombre, String ubicacion, LocalDate fecha, LocalTime horaI, LocalTime horaF, String aforo){
     
     ev= new Evento(nombre,ubicacion, fecha, horaI, horaF, aforo);
     bde.darAlta(ev);
     }
      
      public static void buscar(String nombre){
-        bde.consultar(nombre); 
+        String valor=bde.consultar(nombre); 
      }
      
       private static String seguridad() {
@@ -178,5 +188,19 @@ public class Ejercicio2 {
                       break;
         }; 
         return estarSeguro;
+    }
+
+    public static String tomarUbicacion() {
+        ubicacion=bde.tomarUbicacion();
+        return ubicacion;
+        
+    }
+
+    public static void ComprobarH(String tipo,String nombre, LocalTime hora) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void comprobarD(LocalDate dia, String nombre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

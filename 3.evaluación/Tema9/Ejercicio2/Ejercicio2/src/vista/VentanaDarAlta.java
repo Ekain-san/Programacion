@@ -6,6 +6,10 @@
 package vista;
 
 import ejercicio2.Ejercicio2;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,7 +22,7 @@ public class VentanaDarAlta extends javax.swing.JFrame {
      * Creates new form ventanaPrincipal
      */
     public VentanaDarAlta() {
-        initComponents();
+       
     }
 
     /**
@@ -33,7 +37,7 @@ public class VentanaDarAlta extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        Nombre = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -42,30 +46,38 @@ public class VentanaDarAlta extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        Aforo = new javax.swing.JTextField();
+        Ubicacion = new javax.swing.JTextField();
+        Fecha = new com.github.lgooddatepicker.components.DatePicker();
+        HoraI = new com.github.lgooddatepicker.components.TimePicker();
+        HoraF = new com.github.lgooddatepicker.components.TimePicker();
         BotonAgregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel1.setText("Garacorra San France SA");
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel3.setText("Reserve su sala de eventos con nosotros");
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        Nombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                NombreFocusLost(evt);
+            }
+        });
+        Nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                NombreActionPerformed(evt);
             }
         });
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 255));
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre el evento");
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -78,20 +90,20 @@ public class VentanaDarAlta extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Fecha");
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Hora de inicio");
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Hora de final");
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Aforo");
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Ubicación");
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,9 +146,26 @@ public class VentanaDarAlta extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        Aforo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                AforoFocusLost(evt);
+            }
+        });
+        Aforo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                AforoActionPerformed(evt);
+            }
+        });
+
+        Ubicacion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                UbicacionFocusLost(evt);
+            }
+        });
+
+        Fecha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                FechaFocusLost(evt);
             }
         });
 
@@ -148,9 +177,12 @@ public class VentanaDarAlta extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3))
+                    .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                    .addComponent(Aforo)
+                    .addComponent(Ubicacion)
+                    .addComponent(Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(HoraI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(HoraF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -158,11 +190,17 @@ public class VentanaDarAlta extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(HoraI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(HoraF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Aforo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -210,66 +248,44 @@ public class VentanaDarAlta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-        private String otro;
-        private String estarSeuro;
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        private String ventana = "alta";
+        private String tipo;
+        private String valor;
+        Pattern patl=Pattern.compile("^[A-Z][a-z]{0,9}$");
+    private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
+        
+    }//GEN-LAST:event_NombreActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void AforoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AforoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_AforoActionPerformed
 
     private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
-estarSeguro=seguridad();
-        
-        if(estarSeguroequals("sí")){
-            Ejercicio2.cambiar();
-            otro=seguir();
-        }
-        
-        else{
-            otro=seguir();
-        }
-        
-        if(otro.equals("no")){
-            String ventana="alta";
-            Ejercicio2.volverAPrincipal(ventana);
-        }
+        if(ventana.equals("alta")){
+            Ejercicio2.cercionar(ventana);
     }    }//GEN-LAST:event_BotonAgregarActionPerformed
-     private String seguridad() {
-        estarSeguro=JOptionPane.showInputDialog("¿Esta seguro? N (no), s (sí)");
-        switch (estarSeguro){
-            case "s": estarSeguro="sí";
-                      break;
-            case "S": estarSeguro="sí";
-                      break;
-            case "n": estarSeguro="no";
-                      break;
-            case "N": estarSeguro="no";
-                      break;
-            default: estarSeguro="no";
-                      break;
-        }; 
-        return estarSeguro;
-    }
 
-    private String seguir() {
-        otro=JOptionPane.showInputDialog("¿Desea hacer más? N (no), s (sí)");
-        switch (otro){
-            case "s": otro="sí";
-                      break;
-            case "S": otro="sí";
-                      break;
-            case "n": otro="no";
-                      break;
-            case "N": otro="no";
-                      break;
-            default: otro="no";
-                      break;
-        }; 
-        return estarSeguro;
-    } 
+    private void NombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreFocusLost
+        tipo="nombre";
+        valor=Nombre.getText();
+        Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText());
+    }//GEN-LAST:event_NombreFocusLost
+
+    private void UbicacionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UbicacionFocusLost
+       tipo="ubicacion";
+       valor=Ubicacion.getText();
+        Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText()); 
+    }//GEN-LAST:event_UbicacionFocusLost
+
+    private void AforoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_AforoFocusLost
+       tipo="aforo";
+       valor=Aforo.getText();
+        Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText());
+    }//GEN-LAST:event_AforoFocusLost
+
+    private void FechaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FechaFocusLost
+    
+    }//GEN-LAST:event_FechaFocusLost
     /**
      * @param args the command line arguments
      */
@@ -309,7 +325,13 @@ estarSeguro=seguridad();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Aforo;
     private javax.swing.JButton BotonAgregar;
+    private com.github.lgooddatepicker.components.DatePicker Fecha;
+    private com.github.lgooddatepicker.components.TimePicker HoraF;
+    private com.github.lgooddatepicker.components.TimePicker HoraI;
+    private javax.swing.JTextField Nombre;
+    private javax.swing.JTextField Ubicacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -321,8 +343,11 @@ estarSeguro=seguridad();
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+
+    public void agregar() {
+        Ejercicio2.darAlta(Nombre.getText(), Ubicacion.getText(), Fecha.getDate(), HoraI.getTime(), HoraF.getTime(), Aforo.getText());
+    }
+    
 }
+

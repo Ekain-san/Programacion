@@ -13,9 +13,9 @@ import javax.swing.JOptionPane;
  * @author Asus
  */
 public class VentanaCancelar extends javax.swing.JFrame {
-
-    public static void cancelar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private String ventana="cancelar";
+    public void cancelar() {
+        Ejercicio2.cancelar(Nombre.getText());
     }
 
     /**
@@ -35,13 +35,19 @@ public class VentanaCancelar extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        NombreE = new javax.swing.JTextField();
+        Nombre = new javax.swing.JTextField();
         Aceptar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setText("Introduzca nombre del evento ");
+
+        Nombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                NombreFocusLost(evt);
+            }
+        });
 
         Aceptar1.setText("Aceptar");
         Aceptar1.addActionListener(new java.awt.event.ActionListener() {
@@ -58,7 +64,7 @@ public class VentanaCancelar extends javax.swing.JFrame {
                 .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(NombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
@@ -74,7 +80,7 @@ public class VentanaCancelar extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(NombreE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addComponent(Aceptar1)
                 .addGap(74, 74, 74))
@@ -84,10 +90,14 @@ public class VentanaCancelar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
  
     private void Aceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Aceptar1ActionPerformed
-
-        String ventana="cancelar";
         Ejercicio2.cercionar(ventana);
     }//GEN-LAST:event_Aceptar1ActionPerformed
+
+    private void NombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreFocusLost
+        String tipo="nombre";
+        String valor=Nombre.getText();
+        Ejercicio2.comprobar(tipo,ventana, valor, Nombre.getText());
+    }//GEN-LAST:event_NombreFocusLost
 
     /**
      * @param args the command line arguments
@@ -126,7 +136,7 @@ public class VentanaCancelar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar1;
-    private javax.swing.JTextField NombreE;
+    private javax.swing.JTextField Nombre;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
