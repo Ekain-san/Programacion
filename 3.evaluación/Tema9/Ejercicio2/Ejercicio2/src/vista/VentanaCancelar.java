@@ -6,6 +6,8 @@
 package vista;
 
 import ejercicio2.Ejercicio2;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class VentanaCancelar extends javax.swing.JFrame {
     private String ventana="cancelar";
+    private boolean seguir;
+    private Pattern patl=Pattern.compile("^[A-Z][a-z]{0,9}$");
     public void cancelar() {
         Ejercicio2.cancelar(Nombre.getText());
     }
@@ -96,7 +100,7 @@ public class VentanaCancelar extends javax.swing.JFrame {
     private void NombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreFocusLost
         String tipo="nombre";
         String valor=Nombre.getText();
-        Ejercicio2.comprobar(tipo,ventana, valor, Nombre.getText());
+        comprobar(tipo, valor);
     }//GEN-LAST:event_NombreFocusLost
 
     /**
@@ -139,4 +143,10 @@ public class VentanaCancelar extends javax.swing.JFrame {
     private javax.swing.JTextField Nombre;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+    private void comprobar(String tipo, String valor) {
+        Matcher matl=patl.matcher(valor);
+        do{
+            Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText(), seguir);
+        }while(seguir = false);
+    }
 }

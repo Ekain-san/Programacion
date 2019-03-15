@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  *
  * @author Asus
  */
-public class VentanaCambios extends javax.swing.JFrame {
+public class VentanaCambiar extends javax.swing.JFrame {
     
     private Pattern patl=Pattern.compile("^[A-Z][a-z]{0,9}$");
     public void cambiar() {
@@ -26,7 +26,7 @@ public class VentanaCambios extends javax.swing.JFrame {
     /**
      * Creates new form VentanaCambios
      */
-    public VentanaCambios() {
+    public VentanaCambiar() {
         initComponents();
         SNombre.setVisible(false);
         SHFinal.setVisible(false);
@@ -428,6 +428,7 @@ public class VentanaCambios extends javax.swing.JFrame {
     private String ubicacion;
     private LocalDate dia;
     private LocalTime hora;
+    private boolean seguir;
     
     private void CNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CNombreActionPerformed
         SNombre.setVisible(true);
@@ -458,48 +459,46 @@ public class VentanaCambios extends javax.swing.JFrame {
     }//GEN-LAST:event_AceptarActionPerformed
 
     private void UbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbicacionActionPerformed
-        if(){
-            ubicacion=;
-        }
+        ubicacion= (String) Ubicacion.getSelectedItem();
         tipo="ubicacion";
         valor=ubicacion;
-        comprobar(tipo, ventana, valor);
+        comprobar(tipo, valor);
+        
     }//GEN-LAST:event_UbicacionActionPerformed
 
     private void NombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreFocusLost
         tipo="nombre";
         valor=Nombre.getText();
-        comprobar(tipo, ventana, valor);
+        comprobar(tipo, valor);
     }//GEN-LAST:event_NombreFocusLost
 
     private void NombreEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreEFocusLost
         tipo="nombre";
-        ventana="cambiar2";
         valor=Nombre.getText();
-        comprobar(tipo, ventana, valor);
+        comprobar(tipo, valor);
     }//GEN-LAST:event_NombreEFocusLost
 
     private void AforoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_AforoFocusLost
         tipo="nombre";
         valor=Nombre.getText();
-        comprobar(tipo, ventana, valor);
+        comprobar(tipo, valor);
     }//GEN-LAST:event_AforoFocusLost
 
     private void FechaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FechaFocusLost
         dia = Fecha.getDate();
-        Ejercicio2.comprobarD(dia);
+        comprobar(tipo, valor);
     }//GEN-LAST:event_FechaFocusLost
 
     private void HoraIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_HoraIFocusLost
         hora=HoraI.getTime();
         tipo="horaI";
-        Ejercicio2.ComprobarH(tipo,hora);
+        comprobar(tipo, valor);
     }//GEN-LAST:event_HoraIFocusLost
 
     private void HoraFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_HoraFFocusLost
         hora=HoraF.getTime();
         tipo="horaF";
-        Ejercicio2.ComprobarH(tipo,hora);
+        comprobar(tipo, valor);
     }//GEN-LAST:event_HoraFFocusLost
 
     /**
@@ -519,20 +518,21 @@ public class VentanaCambios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaCambios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaCambiar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaCambios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaCambiar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaCambios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaCambiar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaCambios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaCambiar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaCambios().setVisible(true);
+                new VentanaCambiar().setVisible(true);
             }
         });
     }
@@ -573,19 +573,15 @@ public class VentanaCambios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
-private void comprobar(String tipo, String ventana, String valor) {
-        
-        if (valor.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Rellena el apartado de "+tipo);
-        }
-        else{
-            Matcher matl=patl.matcher(valor);
-            Ejercicio2.comprobar(ventana, tipo);
-        }
-    }
 
     private void rellenar() {
         ubicacion=Ejercicio2.tomarUbicacion();
         Ubicacion.addItem(ubicacion); 
+    }
+
+    private void comprobar(String tipo, String valor) {
+        do{
+            Ejercicio2.comprobar(tipo, ventana, valor, NombreE.getText(), seguir);
+        }while(seguir = false);
     }
 }

@@ -251,7 +251,8 @@ public class VentanaDarAlta extends javax.swing.JFrame {
         private String ventana = "alta";
         private String tipo;
         private String valor;
-        Pattern patl=Pattern.compile("^[A-Z][a-z]{0,9}$");
+        private boolean seguir;
+        private Pattern patl=Pattern.compile("^[A-Z][a-z]{0,9}$");
     private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
         
     }//GEN-LAST:event_NombreActionPerformed
@@ -268,19 +269,19 @@ public class VentanaDarAlta extends javax.swing.JFrame {
     private void NombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreFocusLost
         tipo="nombre";
         valor=Nombre.getText();
-        Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText());
+        comprobar(tipo, valor);
     }//GEN-LAST:event_NombreFocusLost
 
     private void UbicacionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UbicacionFocusLost
        tipo="ubicacion";
        valor=Ubicacion.getText();
-        Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText()); 
+        comprobar(tipo, valor);
     }//GEN-LAST:event_UbicacionFocusLost
 
     private void AforoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_AforoFocusLost
        tipo="aforo";
        valor=Aforo.getText();
-        Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText());
+        comprobar(tipo, valor);
     }//GEN-LAST:event_AforoFocusLost
 
     private void FechaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FechaFocusLost
@@ -348,6 +349,14 @@ public class VentanaDarAlta extends javax.swing.JFrame {
     public void agregar() {
         Ejercicio2.darAlta(Nombre.getText(), Ubicacion.getText(), Fecha.getDate(), HoraI.getTime(), HoraF.getTime(), Aforo.getText());
     }
-    
+
+    private void comprobar(String tipo, String valor) {
+        Matcher matl=patl.matcher(valor);
+        do{
+            Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText(), seguir);
+        }while(seguir = false);
+    }
 }
+    
+
 

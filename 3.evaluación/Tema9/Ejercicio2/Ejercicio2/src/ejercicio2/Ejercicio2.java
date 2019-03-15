@@ -5,11 +5,14 @@
  */
 package ejercicio2;
 
+
 /**
  *
  * @author Asus
- */import vista.*;
-    import clases.*;
+ */
+import clases.UML.*;
+import clases.BD.*;
+import vista.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.sql.*;
@@ -22,30 +25,54 @@ public class Ejercicio2 {
      */private static VentanaPrincipal vp;
        private static VentanaDarAlta vd;
        private static VentanaCancelar vc;
-       private static VentanaCambios vca;
+       private static VentanaCambiar vca;
+       private static VentanaVer vv;
+       private static VentanaInscribir vi;
+       
        private static BD bd;
        private static BDEventos bde;
+       private static BDEmpresas bdem;
+       private static BDAsistentes bda;
+       private static BDPersonas bdp;
+       
        private static Evento ev;
+       private static Empresa em;
+       private static Persona pe;
+       
        private static Connection con;
+       
        private static String otro;
        private static String estarSeguro;
        private static String ubicacion;
 
+       
+    public static void main(String[] args) {
+        vp = new VentanaPrincipal();
+        vd = new VentanaDarAlta();
+        vc = new VentanaCancelar();
+        vv = new VentanaVer();
+        vi = new VentanaInscribir();
+        
+        bd = new BD();
+        
+        con=bd.conectar();
+        if (con == null){
+           System.out.println("Problemas con la base de datos");
+           System.exit(-1);
+        }
+        bde = new BDEventos(con);
+        bdem = new BDEmpresas(con);
+        bda = new BDAsistentes(con);
+        bdp = new BDPersonas(con);
+        bd.desconectar();
+        iniciarPrograma();
+    }
+    
     public static void cambiar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        bde.cambiar();
     }
 
     public static void cercionar(String ventana) {
-        if(ventana.equals("cambiar") ||ventana.equals("alta")|| ventana.equals("cancelar")){
-            boolean esta;
-            esta=comprobar(ventana);
-            if (esta=true){
-            estarSeguro=seguridad();
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "ha metido datos no validos");
-            }
-        }
         if(estarSeguro.equals("sí")){
             if(ventana.equals("cambiar"))
                 vca.cambiar();
@@ -63,27 +90,6 @@ public class Ejercicio2 {
         if(otro.equals("no")){
             volverAPrincipal(ventana);
         }
-    }
-
-    private static boolean comprobar(String ventana) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-    public static void main(String[] args) {
-        // TODO code application logic here
-        vp = new VentanaPrincipal();
-        vd = new VentanaDarAlta();
-        vc = new VentanaCancelar();
-        bd = new BD();
-        con=bd.conectar();
-        if (con == null){
-           System.out.println("Problemas con la base de datos");
-           System.exit(-1);
-        }
-        bd.desconectar();
-        bde = new BDEventos(con);
-        iniciarPrograma();
     }
 
     private static void iniciarPrograma() {
@@ -129,13 +135,55 @@ public class Ejercicio2 {
         vp.setVisible(true);
     }
 
-    public static void comprobar(String tipo, String ventana, String valor, String nombre) {
-        String dato; 
-        dato= bde.sacarDato(tipo, nombre);
-        
-        if(dato.equals(valor) && ventana.equals("alta"))
-            JOptionPane.showMessageDialog(null, "");
-    }
+    public static boolean comprobar(String tipo, String ventana, String valor, String nombre, boolean seguir) {
+        if(valor.isEmpty()){
+            if(tipo.equals("nombreE")){
+                JOptionPane.showMessageDialog(null,"Tiene que rellenar el apartado del nombre del acontecimiento cuyos datos desea cambiar");
+                return seguir=false;
+            }
+            else{
+                if(ventana.equals("cancelar")){
+                    JOptionPane.showMessageDialog(null,"Tiene que rellenar el apartado del nombre del acontecimiento que desea cancelar");
+                return seguir=false;
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Tiene que rellenar el apartado "+tipo);
+                    return seguir=false;
+                }
+            }
+        }
+        else{
+            String dato;
+            dato= bde.sacarDato(tipo, nombre);
+
+            if(dato.equals(valor) && ventana.equals("alta")){
+                JOptionPane.showMessageDialog(null, "Ya exista este acontecimiento");
+                return seguir=false;   
+            }
+
+            else{
+                if(!dato.equals(valor)&& tipo.equals("nombreE")){
+                    JOptionPane.showMessageDialog(null, "Este acontecimiento no existe");
+                    return seguir=false;
+                }
+
+                else{
+                    if(dato.equals(valor)&&!tipo.equals("nombreE")&&ventana.equals("cambiar")){
+                        JOptionPane.showMessageDialog(null, "Estos datos ya fueron introducidos previamente cuando el elemento fue creado");
+                        return seguir=false;
+                    }
+                    else{
+                        if(!dato.equals(valor)&& tipo.equals("nombre") && ventana.equals("cancelar")){
+                            JOptionPane.showMessageDialog(null, "Este acontecimiento no existe");
+                            return seguir=false;
+                        }
+                            else
+                            return seguir=true;
+                     }
+                }   
+            }
+        }
+   }
     
     public static void cancelar(String nombre){
         bde.cancelar(nombre);
@@ -196,11 +244,32 @@ public class Ejercicio2 {
         
     }
 
-    public static void ComprobarH(String tipo,String nombre, LocalTime hora) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static boolean ComprobarH(String tipo,String nombre, LocalTime hora, boolean seguir) {
+        LocalTime horaC=bde.sacarHora(nombre, tipo);
+        if(hora.equals(horaC)){
+            JOptionPane.showMessageDialog(null, "Ya tenía esta hora cuando fue creada");
+            return seguir=false;
+        }
+        else{
+            return seguir=true;
+        }
     }
 
-    public static void comprobarD(LocalDate dia, String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static boolean comprobarD(LocalDate dia, String nombre, boolean seguir) {
+        String tipo = "fecha";
+        LocalDate diaC=bde.sacarDia(nombre, tipo);
+        if(dia.equals(diaC)){
+            JOptionPane.showMessageDialog(null, "Ya tenía esta fecha cuando fue creada");
+            return seguir=false;
+        }
+        else{
+            return seguir=true;
+        }
+    }
+
+    public static void pantallaVer() {
+        vp.setVisible(false);
+        bd.conectar();
+        vv.setVisible(true);
     }
 }

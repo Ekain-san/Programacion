@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clases;
+package clases.UML;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Evento {
     private LocalTime horaI;
     private LocalTime horaF;
     private String aforo;
+     private ArrayList<Persona> listaPersonas;
 
     public Evento(String nombre,String ubicacion, LocalDate fecha, LocalTime horaI, LocalTime horaF, String aforo) {
         this.nombre = nombre;

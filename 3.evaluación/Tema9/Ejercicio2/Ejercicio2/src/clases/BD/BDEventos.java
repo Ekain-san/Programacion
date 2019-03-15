@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clases;
+package clases.BD;
 
+import clases.UML.Evento;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -35,7 +36,7 @@ public void darAlta(Evento ev){
         try{
         Statement sentencia =con.createStatement();
         
-        String plantilla = "insert into eventos values (?,?,?,?,?,?);";
+        String plantilla = "insert into aconticimientos values (?,?,?,?,?,?);";
         PreparedStatement ps = con.prepareStatement(plantilla);
         ps.setString(1,ev.getNombre());
         ps.setString(2,ev.getUbicacion());
@@ -66,7 +67,7 @@ public void darAlta(Evento ev){
     public void cancelar(String nombre)
     {
         try{
-            String plantilla = "delete * from eventos where nombre = ?;";
+            String plantilla = "delete * from aconticimientos where nombre = ?;";
             PreparedStatement ps = con.prepareStatement(plantilla);
             ps.setString(1, nombre);
         }
@@ -77,8 +78,12 @@ public void darAlta(Evento ev){
     
     public String sacarDato(String tipo, String nombre){
         String dato = null;
+        if(tipo.equals("nombroE")){
+            tipo="nombre";
+        }
+        
        try{
-           String plantilla = "select ? from eventos where nombre = ?;";
+           String plantilla = "select ? from aconticimientos where nombre = ?;";
            PreparedStatement ps = con.prepareStatement(plantilla);
             ps.setString(1,tipo);
             ps.setString(2,nombre);
@@ -108,7 +113,7 @@ public void darAlta(Evento ev){
 
     public String tomarUbicacion() {
         try{
-            String plantilla = "select UBICACION from EVENTOS;";
+            String plantilla = "select UBICACION from aconticimientos;";
             PreparedStatement ps = con.prepareStatement(plantilla);
             ResultSet resultado = ps.executeQuery();
             if (resultado.next())
@@ -124,7 +129,7 @@ public void darAlta(Evento ev){
 
     public String consultar(String nombre) {
         try{    
-            String plantilla = "select * from personas where nombre = ?;";
+            String plantilla = "select * from aconticimientos where nombre = ?;";
             PreparedStatement ps = con.prepareStatement(plantilla);
             ps.setString(1,nombre);
             ResultSet resultado = ps.executeQuery();
@@ -133,6 +138,18 @@ public void darAlta(Evento ev){
         catch(Exception e){
             return null;
         }
+    }
+
+    public void cambiar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public LocalTime sacarHora(String nombre, String tipo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public LocalDate sacarDia(String nombre, String tipo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
 
