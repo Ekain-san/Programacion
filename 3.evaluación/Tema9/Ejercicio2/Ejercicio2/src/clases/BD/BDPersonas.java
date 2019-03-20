@@ -5,10 +5,16 @@
  */
 package clases.BD;
 
+import java.sql.Connection;
+
 /**
  *
  * @author Asus
  */
 public class BDPersonas {
+
+    public BDPersonas(Connection con) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

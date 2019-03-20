@@ -580,6 +580,8 @@ public class VentanaCambiar extends javax.swing.JFrame {
     }
 
     private void comprobar(String tipo, String valor) {
+        Matcher matl=patl.matcher(valor);
+        if (mat1.matches())
         do{
             Ejercicio2.comprobar(tipo, ventana, valor, NombreE.getText(), seguir);
         }while(seguir = false);
