@@ -122,7 +122,7 @@ public class BDEventos {
 
     public String tomarUbicacion() {
         try{
-            String plantilla = "select UBICACION from aconticimientos;";
+            String plantilla = "select Initcap(UBICACION) from aconticimientos;";
             PreparedStatement ps = con.prepareStatement(plantilla);
             ResultSet resultado = ps.executeQuery();
             if (resultado.next())
