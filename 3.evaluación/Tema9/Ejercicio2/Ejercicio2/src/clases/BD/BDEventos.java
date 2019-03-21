@@ -29,40 +29,43 @@ public class BDEventos {
     private Time horaTF;
     private ArrayList listaUbicaciones;
 
+
     public BDEventos(Connection con) {
         this.con = con;
-    }  
-public void darAlta(Evento ev){
-        try{
-        Statement sentencia =con.createStatement();
+    }
+
+
+    public void darAlta(Evento ev){
+    	try{
+	    Statement sentencia =con.createStatement();
+	    String plantilla = "insert into aconticimientos values (?,?,?,?,?,?);";
+	    PreparedStatement ps = con.prepareStatement(plantilla);
+	    ps.setString(1,ev.getNombre());
+	    ps.setString(2,ev.getUbicacion());
+	    fechaD=convertidor(ev.getFecha());
+	    ps.setDate(3, fechaD);
+	    horaTI = convertidorT(ev.getHoraI());
+	    ps.setTime(4, horaTI);
+	    horaTF = convertidorT(ev.getHoraF());
+	    ps.setTime(5, horaTF);
+	    ps.setInt(6, Integer.parseInt(ev.getAforo()));
+	
+	    int n = ps.executeUpdate();
+	
+	    if (n == 0)
+	        System.out.println("Cero filas");
+            }
         
-        String plantilla = "insert into aconticimientos values (?,?,?,?,?,?);";
-        PreparedStatement ps = con.prepareStatement(plantilla);
-        ps.setString(1,ev.getNombre());
-        ps.setString(2,ev.getUbicacion());
-        fechaD=convertidor(ev.getFecha());
-        ps.setDate(3, fechaD);
-        horaTI = convertidorT(ev.getHoraI());
-        ps.setTime(4, horaTI);
-        horaTF = convertidorT(ev.getHoraF());
-        ps.setTime(5, horaTF);
-        ps.setInt(6, Integer.parseInt(ev.getAforo()));
-        
-        int n = ps.executeUpdate();
-        
-        if (n == 0)
-            System.out.println("Cero filas");
-        }
-        catch(Exception e)
-        {
+        catch(Exception e){
             System.out.println(e.getClass() + e.getMessage());
-        }
-    
-}    
+        }   
+    }    
+
 
     public void cambiar(Evento ev, String nombreE) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
+
 
     public void cancelar(String nombre)
     {
@@ -71,45 +74,51 @@ public void darAlta(Evento ev){
             PreparedStatement ps = con.prepareStatement(plantilla);
             ps.setString(1, nombre);
         }
-        catch(Exception e){
-            
+
+        catch(Exception e){        
         }
     }
+
     
     public String sacarDato(String tipo, String nombre){
         String dato = null;
         if(tipo.equals("nombroE")){
             tipo="nombre";
         }
+
         
        try{
-           String plantilla = "select ? from aconticimientos where nombre = ?;";
-           PreparedStatement ps = con.prepareStatement(plantilla);
+            String plantilla = "select ? from aconticimientos where nombre = ?;";
+            PreparedStatement ps = con.prepareStatement(plantilla);
             ps.setString(1,tipo);
             ps.setString(2,nombre);
             ResultSet resultado = ps.executeQuery();
             dato=resultado.getString(1);
             return dato;
        }
+
        catch(Exception e){
            return null;
        }
     }
 
+
     public void cambiar(Evento ev) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        
     }
+
     
     public Date convertidor(LocalDate fecha) {
         Date fechaE = java.sql.Date.valueOf(fecha);
         return fechaE;
     }
     
+
     public Time convertidorT(LocalTime hora) {
         Time horaT = java.sql.Time.valueOf(hora);
         return horaT;
-    }
-    
+    }    
+
 
     public String tomarUbicacion() {
         try{
@@ -127,6 +136,7 @@ public void darAlta(Evento ev){
         }
     }
 
+
     public String consultar(String nombre) {
         try{    
             String plantilla = "select * from aconticimientos where nombre = ?;";
@@ -135,21 +145,44 @@ public void darAlta(Evento ev){
             ResultSet resultado = ps.executeQuery();
             return resultado.getString(1) + resultado.getInt(2)+resultado.getDate(3)+resultado.getTime(4)+resultado.getTime(5)+resultado.getInt(6);
         }
+
         catch(Exception e){
             return null;
         }
     }
 
-    public void cambiar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public LocalTime sacarHora(String nombre, String tipo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            String plantilla = "select ? from aconticimientos where nombre = ?;";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setString(1,tipo);
+            ps.setString(2,nombre);
+            ResultSet resultado = ps.executeQuery();
+            LocalTime hora= resultado.getTime(1).toInstant() .atZone(ZoneId.systemDefault()) .toLocalTime();
+            return hora;
+        }
+        
+        catch(Exception e){
+            return null;
+        }  
     }
 
+
     public LocalDate sacarDia(String nombre, String tipo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            String plantilla = "select ? from aconticimientos where nombre = ?;";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setString(1,tipo);
+            ps.setString(2,nombre);
+            ResultSet resultado = ps.executeQuery();
+            LocalDate dia= resultado.getTime(1).toInstant() .atZone(ZoneId.systemDefault()) .toLocalDate();
+            return dia;
+        }
+        
+        catch(Exception e){
+            return null;
+        }
     }
 }
 

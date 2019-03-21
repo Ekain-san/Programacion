@@ -20,7 +20,7 @@ public class VentanaCambiar extends javax.swing.JFrame {
     
     private Pattern patl=Pattern.compile("^[A-Z][a-z]{0,9}$");
     public void cambiar() {
-        Ejercicio2.cambiar(Nombre.getText(),ubicacion, Fecha.getDate(), HoraI.getTime(), HoraF.getTime(), Aforo.getText());
+        Ejercicio2.cambiar(NombreE.getText(),Nombre.getText(),ubicacion, Fecha.getDate(), HoraI.getTime(), HoraF.getTime(), Aforo.getText());
     }
 
     /**
@@ -429,6 +429,8 @@ public class VentanaCambiar extends javax.swing.JFrame {
     private LocalDate dia;
     private LocalTime hora;
     private boolean seguir;
+    private Matcher mat1;
+
     
     private void CNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CNombreActionPerformed
         SNombre.setVisible(true);
@@ -580,7 +582,7 @@ public class VentanaCambiar extends javax.swing.JFrame {
     }
 
     private void comprobar(String tipo, String valor) {
-        Matcher matl=patl.matcher(valor);
+        mat1=patl.matcher(valor);
         if (mat1.matches())
         do{
             Ejercicio2.comprobar(tipo, ventana, valor, NombreE.getText(), seguir);

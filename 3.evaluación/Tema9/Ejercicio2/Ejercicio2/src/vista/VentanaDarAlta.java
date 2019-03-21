@@ -253,6 +253,7 @@ public class VentanaDarAlta extends javax.swing.JFrame {
         private String valor;
         private boolean seguir;
         private Pattern patl=Pattern.compile("^[A-Z][a-z]{0,9}$");
+        private Matcher mat1;
     private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
         
     }//GEN-LAST:event_NombreActionPerformed
@@ -351,7 +352,8 @@ public class VentanaDarAlta extends javax.swing.JFrame {
     }
 
     private void comprobar(String tipo, String valor) {
-        Matcher matl=patl.matcher(valor);
+        mat1=patl.matcher(valor);
+        if (mat1.matches())
         do{
             Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText(), seguir);
         }while(seguir = false);

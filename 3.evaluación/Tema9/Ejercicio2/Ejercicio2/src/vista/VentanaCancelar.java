@@ -18,6 +18,7 @@ public class VentanaCancelar extends javax.swing.JFrame {
     private String ventana="cancelar";
     private boolean seguir;
     private Pattern patl=Pattern.compile("^[A-Z][a-z]{0,9}$");
+    private Matcher mat1;
     public void cancelar() {
         Ejercicio2.cancelar(Nombre.getText());
     }
@@ -74,20 +75,20 @@ public class VentanaCancelar extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                         .addGap(82, 82, 82))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(159, 159, 159)
+                .addGap(161, 161, 161)
                 .addComponent(Aceptar1)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(106, 106, 106)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(Aceptar1)
-                .addGap(74, 74, 74))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         pack();
@@ -143,8 +144,10 @@ public class VentanaCancelar extends javax.swing.JFrame {
     private javax.swing.JTextField Nombre;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
     private void comprobar(String tipo, String valor) {
-        Matcher matl=patl.matcher(valor);
+        mat1=patl.matcher(valor);
+        if (mat1.matches())
         do{
             Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText(), seguir);
         }while(seguir = false);

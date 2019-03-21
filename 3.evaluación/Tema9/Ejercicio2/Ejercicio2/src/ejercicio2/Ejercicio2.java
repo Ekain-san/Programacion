@@ -28,6 +28,7 @@ public class Ejercicio2 {
        private static VentanaCambiar vca;
        private static VentanaVer vv;
        private static VentanaInscribir vi;
+       private static VentanaAgregarEmpresa vap;
        
        private static BD bd;
        private static BDEventos bde;
@@ -52,6 +53,7 @@ public class Ejercicio2 {
         vc = new VentanaCancelar();
         vv = new VentanaVer();
         vi = new VentanaInscribir();
+        vap= new VentanaAgregarEmpresa();
         
         bd = new BD();
         
@@ -66,10 +68,6 @@ public class Ejercicio2 {
         bdp = new BDPersonas(con);
         bd.desconectar();
         iniciarPrograma();
-    }
-    
-    public static void cambiar() {
-        bde.cambiar();
     }
 
     public static void cercionar(String ventana) {
@@ -112,6 +110,18 @@ public class Ejercicio2 {
         vp.setVisible(false);
         bd.conectar();
         vca.setVisible(true);
+    }
+    
+     public static void pantallaInscribir(){
+        vp.setVisible(false);
+        bd.conectar();
+        vi.setVisible(true);
+    }
+     
+    public static void pantallaAgregarEmpresa(){
+        vp.setVisible(false);
+        bd.conectar();
+        vap.setVisible(true);
     }
     
     public static void Salir(){
@@ -189,9 +199,9 @@ public class Ejercicio2 {
         bde.cancelar(nombre);
     }
     
-    public static void cambiar(String nombre, String ubicacion, LocalDate fecha, LocalTime horaI, LocalTime horaF, String aforo){
+    public static void cambiar(String nombreE, String nombre, String ubicacion, LocalDate fecha, LocalTime horaI, LocalTime horaF, String aforo){
     ev= new Evento(nombre,ubicacion, fecha, horaI, horaF, aforo);
-    bde.cambiar(ev);
+    bde.cambiar(ev, nombreE);
     }
     
      public static void darAlta(String nombre, String ubicacion, LocalDate fecha, LocalTime horaI, LocalTime horaF, String aforo){
