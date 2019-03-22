@@ -191,13 +191,21 @@ public class BDEventos {
     }
 
 
-    public String consultar(String nombre) {
+    public Evento consultar(String nombre) {
         try{    
             String plantilla = "select * from aconticimientos where nombre = ?;";
             PreparedStatement ps = con.prepareStatement(plantilla);
             ps.setString(1,nombre);
             ResultSet resultado = ps.executeQuery();
-            return resultado.getString(1) + resultado.getInt(2)+resultado.getDate(3)+resultado.getTime(4)+resultado.getTime(5)+resultado.getInt(6);
+            nombre = resultado.getString(1);
+            String ubicacion=resultado.getString(2);
+            LocalDate fecha=resultado.getTime(3).toInstant() .atZone(ZoneId.systemDefault()) .toLocalDate();
+            LocalTime horaI=resultado.getDate(4).toInstant() .atZone(ZoneId.systemDefault()) .toLocalTime();
+            LocalTime horaF=resultado.getDate(5).toInstant() .atZone(ZoneId.systemDefault()) .toLocalTime();
+            int aforo=resultado.getInt(6);
+            Evento ev;
+            ev= new Evento(nombre,ubicacion,fecha, horaI, horaF, aforo);
+            return 
         }
 
         catch(Exception e){
@@ -208,6 +216,12 @@ public class BDEventos {
 
     public LocalTime sacarHora(String nombre, String tipo) {
         try{
+            if(tipo.equals("horaI"))
+                tipo="horaInicio";
+            
+            if(tipo.equals("horaF"))
+                tipo="horaFin";
+            
             String plantilla = "select ? from aconticimientos where nombre = ?;";
             PreparedStatement ps = con.prepareStatement(plantilla);
             ps.setString(1,tipo);
