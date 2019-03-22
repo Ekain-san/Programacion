@@ -72,8 +72,6 @@ public class Ejercicio2 {
 
     public static void cercionar(String ventana) {
         if(estarSeguro.equals("sí")){
-            if(ventana.equals("cambiar"))
-                vca.cambiar();
             if(ventana.equals("cancelar"))
                 vc.cancelar();
                 if(ventana.equals("agregar"))
@@ -199,9 +197,16 @@ public class Ejercicio2 {
         bde.cancelar(nombre);
     }
     
-    public static void cambiar(String nombreE, String nombre, String ubicacion, LocalDate fecha, LocalTime horaI, LocalTime horaF, String aforo){
-    ev= new Evento(nombre,ubicacion, fecha, horaI, horaF, aforo);
-    bde.cambiar(ev, nombreE);
+    public static void cambiar(String nombreE, String tipo, String valor){
+    bde.cambiar(nombreE, tipo, valor);
+    }
+    
+    public static void cambiarD(String nombreE, String tipo, LocalDate valor){
+    bde.cambiarD(nombreE, tipo, valor);
+    }
+    
+    public static void cambiarH(String nombreE, String tipo, LocalTime valor){
+    bde.cambiarT(nombreE, tipo, valor);
     }
     
      public static void darAlta(String nombre, String ubicacion, LocalDate fecha, LocalTime horaI, LocalTime horaF, String aforo){

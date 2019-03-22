@@ -62,8 +62,62 @@ public class BDEventos {
     }    
 
 
-    public void cambiar(Evento ev, String nombreE) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void cambiar(String nombreE, String tipo, String valor) {
+        try{
+            String plantilla = "update table aconticimientos  set ?=? where nombre=?;";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setString(1,tipo);
+            ps.setString(2,valor);
+            ps.setString(2,nombreE);
+            
+        } 
+        catch(Exception e){
+                
+        }
+    }
+    
+    public void cambiarD(String nombreE, String tipo, LocalDate dia) {
+        try{
+            fechaD=convertidor(dia);
+            String plantilla = "update table aconticimientos  set ?=? where nombre=?;";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setString(1,tipo);
+            ps.setDate(2,fechaD);
+            ps.setString(2,nombreE); 
+        } 
+        
+        catch(Exception e){
+            
+        }
+    }
+    
+    public void cambiarT(String nombreE, String tipo, LocalTime hora) {
+        try{
+	    Statement sentencia =con.createStatement();
+	   if(tipo.equals("horaI")){
+               horaTI = convertidorT(hora);
+               tipo="horaInicio";
+               String plantilla = "update table aconticimientos  set ?=? where nombre=?;";
+               PreparedStatement ps = con.prepareStatement(plantilla);
+               ps.setString(1,tipo);
+               ps.setTime(2,horaTI);
+               ps.setString(2,nombreE);
+           }
+            
+           else if(tipo.equals("horaF")){
+               horaTF = convertidorT(hora);
+               tipo="horaFin";
+               String plantilla = "update table aconticimientos  set ?=? where nombre=?;";
+               PreparedStatement ps = con.prepareStatement(plantilla);
+               ps.setString(1,tipo);
+               ps.setTime(2,horaTF);
+               ps.setString(2,nombreE);
+           }
+        }
+        
+        catch(Exception e){
+            
+        }
     }
 
 

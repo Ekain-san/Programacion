@@ -19,9 +19,6 @@ import java.util.regex.Pattern;
 public class VentanaCambiar extends javax.swing.JFrame {
     
     private Pattern patl=Pattern.compile("^[A-Z][a-z]{0,9}$");
-    public void cambiar() {
-        Ejercicio2.cambiar(NombreE.getText(),Nombre.getText(),ubicacion, Fecha.getDate(), HoraI.getTime(), HoraF.getTime(), Aforo.getText());
-    }
 
     /**
      * Creates new form VentanaCambios
@@ -80,7 +77,7 @@ public class VentanaCambiar extends javax.swing.JFrame {
         CHInicio = new javax.swing.JCheckBox();
         CHFin = new javax.swing.JCheckBox();
         CAforo = new javax.swing.JCheckBox();
-        Aceptar = new javax.swing.JButton();
+        Volver = new javax.swing.JButton();
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre el evento");
@@ -325,10 +322,10 @@ public class VentanaCambiar extends javax.swing.JFrame {
             }
         });
 
-        Aceptar.setText("Aceptar");
-        Aceptar.addActionListener(new java.awt.event.ActionListener() {
+        Volver.setText("Volver");
+        Volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AceptarActionPerformed(evt);
+                VolverActionPerformed(evt);
             }
         });
 
@@ -345,14 +342,12 @@ public class VentanaCambiar extends javax.swing.JFrame {
                             .addComponent(CHInicio))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(CHFin)
-                                .addGap(80, 80, 80)
-                                .addComponent(CAforo))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(CUbicacion)
-                                .addGap(72, 72, 72)
-                                .addComponent(CFecha)))
+                            .addComponent(CUbicacion)
+                            .addComponent(CHFin))
+                        .addGap(72, 72, 72)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(CFecha)
+                            .addComponent(CAforo))
                         .addGap(72, 72, 72))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -375,7 +370,7 @@ public class VentanaCambiar extends javax.swing.JFrame {
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(173, 173, 173)
-                        .addComponent(Aceptar)))
+                        .addComponent(Volver)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -393,10 +388,13 @@ public class VentanaCambiar extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(CNombre)
                             .addComponent(CFecha))
-                        .addGap(5, 5, 5)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(CHInicio)
-                            .addComponent(CAforo))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(CHInicio))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CAforo)))
                         .addGap(43, 43, 43))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -416,7 +414,7 @@ public class VentanaCambiar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SAforo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
-                .addComponent(Aceptar)
+                .addComponent(Volver)
                 .addGap(15, 15, 15))
         );
 
@@ -456,15 +454,12 @@ public class VentanaCambiar extends javax.swing.JFrame {
         SAforo.setVisible(true);
     }//GEN-LAST:event_CAforoActionPerformed
 
-    private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
-        Ejercicio2.cercionar(ventana);          
-    }//GEN-LAST:event_AceptarActionPerformed
-
     private void UbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbicacionActionPerformed
         ubicacion= (String) Ubicacion.getSelectedItem();
         tipo="ubicacion";
         valor=ubicacion;
         comprobar(tipo, valor);
+        Ejercicio2.cambiar(NombreE.getText(),tipo,valor);
         
     }//GEN-LAST:event_UbicacionActionPerformed
 
@@ -472,6 +467,7 @@ public class VentanaCambiar extends javax.swing.JFrame {
         tipo="nombre";
         valor=Nombre.getText();
         comprobar(tipo, valor);
+        Ejercicio2.cambiar(NombreE.getText(),tipo,valor);
     }//GEN-LAST:event_NombreFocusLost
 
     private void NombreEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreEFocusLost
@@ -484,24 +480,32 @@ public class VentanaCambiar extends javax.swing.JFrame {
         tipo="nombre";
         valor=Nombre.getText();
         comprobar(tipo, valor);
+        Ejercicio2.cambiar(NombreE.getText(),tipo,valor);
     }//GEN-LAST:event_AforoFocusLost
 
     private void FechaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FechaFocusLost
         dia = Fecha.getDate();
         comprobar(tipo, valor);
+        Ejercicio2.cambiarD(NombreE.getText(),tipo,dia);
     }//GEN-LAST:event_FechaFocusLost
 
     private void HoraIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_HoraIFocusLost
         hora=HoraI.getTime();
         tipo="horaI";
         comprobar(tipo, valor);
+        Ejercicio2.cambiarH(NombreE.getText(),tipo,hora);
     }//GEN-LAST:event_HoraIFocusLost
 
     private void HoraFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_HoraFFocusLost
         hora=HoraF.getTime();
         tipo="horaF";
         comprobar(tipo, valor);
+        Ejercicio2.cambiarH(NombreE.getText(),tipo,hora);
     }//GEN-LAST:event_HoraFFocusLost
+
+    private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
+        Ejercicio2.volverAPrincipal(ventana);
+    }//GEN-LAST:event_VolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -540,7 +544,6 @@ public class VentanaCambiar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Aceptar;
     private javax.swing.JTextField Aforo;
     private javax.swing.JCheckBox CAforo;
     private javax.swing.JCheckBox CFecha;
@@ -562,6 +565,7 @@ public class VentanaCambiar extends javax.swing.JFrame {
     private javax.swing.JPanel SNombre;
     private javax.swing.JPanel SUbicacion;
     private javax.swing.JComboBox<String> Ubicacion;
+    private javax.swing.JButton Volver;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JLabel jLabel1;
