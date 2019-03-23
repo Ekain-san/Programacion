@@ -146,10 +146,17 @@ public class VentanaCancelar extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void comprobar(String tipo, String valor) {
-        mat1=patl.matcher(valor);
-        if (mat1.matches())
-        do{
-            Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText(), seguir);
-        }while(seguir = false);
+        if(valor.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Tiene que rellenar el apartado del nombre del acontecimiento que desea cancelar");
+        }
+        
+        else{
+            mat1=patl.matcher(valor);
+            if (mat1.matches()){
+                do{
+                    Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText(), seguir);
+                }while(seguir = false);
+            }
+        }
     }
 }

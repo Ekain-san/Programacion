@@ -586,10 +586,23 @@ public class VentanaCambiar extends javax.swing.JFrame {
     }
 
     private void comprobar(String tipo, String valor) {
-        mat1=patl.matcher(valor);
-        if (mat1.matches())
-        do{
-            Ejercicio2.comprobar(tipo, ventana, valor, NombreE.getText(), seguir);
-        }while(seguir = false);
+       if(valor.isEmpty()){
+            if(tipo.equals("nombreE")){
+                JOptionPane.showMessageDialog(null,"Tiene que rellenar el apartado del nombre del acontecimiento cuyos datos desea cambiar");
+            }
+            
+            else{
+                JOptionPane.showMessageDialog(null,"Tiene que rellenar el apartado "+tipo);
+            }
+       }
+       
+       else{
+           mat1=patl.matcher(valor);
+           if (mat1.matches()){
+            do{
+                Ejercicio2.comprobar(tipo, ventana, valor, NombreE.getText(), seguir);
+                }while(seguir = false);
+            }
+       }
     }
 }

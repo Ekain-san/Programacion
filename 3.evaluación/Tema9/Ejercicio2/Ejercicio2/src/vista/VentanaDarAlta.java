@@ -352,11 +352,17 @@ public class VentanaDarAlta extends javax.swing.JFrame {
     }
 
     private void comprobar(String tipo, String valor) {
-        mat1=patl.matcher(valor);
-        if (mat1.matches())
-        do{
-            Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText(), seguir);
-        }while(seguir = false);
+        if(valor.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Tiene que rellenar el apartado "+tipo+" del evento que desea añadir");
+        }
+        else{
+            mat1=patl.matcher(valor);
+            if (mat1.matches()){
+                do{
+                    Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText(), seguir);
+                }while(seguir = false);
+            }
+        }        
     }
 }
     
