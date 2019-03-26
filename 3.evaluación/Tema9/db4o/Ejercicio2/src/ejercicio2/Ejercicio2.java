@@ -58,7 +58,7 @@ public class Ejercicio2 {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public static void comprobar(String tipo, String ventana, String valor, String text, boolean seguir) {
+    public static boolean comprobar(String tipo, String ventana, String valor, String text, boolean seguir) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -10,6 +10,8 @@ package vista;
  * @author Asus
  */
 import ejercicio2.Ejercicio2;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -391,17 +393,31 @@ public class VentanaVer extends javax.swing.JFrame {
     private String ventana="ver";
     private boolean seguir;
     private Matcher mat1;
+    private String tipo;
+    private String valor;
+    private LocalTime hora;
+    private LocalDate fecha;
 
     private void CHInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHInicioActionPerformed
         SHInicio.setVisible(true);
+        tipo="horaI";
+        hora=Ejercicio2.sacarvalorH( tipo, NombreE.getText());
+        Nombre.setText(hora.toString());
     }//GEN-LAST:event_CHInicioActionPerformed
 
     private void CHFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHFinActionPerformed
         SHFinal.setVisible(true);
+        tipo="ubicacion";
+        tipo="horaF";
+        hora=Ejercicio2.sacarvalorH( tipo, NombreE.getText());
+        Nombre.setText(hora.toString());
     }//GEN-LAST:event_CHFinActionPerformed
 
     private void CAforoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CAforoActionPerformed
         SAforo.setVisible(true);
+        tipo="aforo";
+        valor=Ejercicio2.sacarvalor( tipo, NombreE.getText());
+        Aforo.setText(valor);
     }//GEN-LAST:event_CAforoActionPerformed
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
@@ -415,34 +431,46 @@ public class VentanaVer extends javax.swing.JFrame {
 
     private void CNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CNombreActionPerformed
         SNombre.setVisible(true);
+        tipo="nombre";
+        valor=Ejercicio2.sacarvalor( tipo, NombreE.getText());
+        Nombre.setText(valor);
     }//GEN-LAST:event_CNombreActionPerformed
 
     private void CUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CUbicacionActionPerformed
         SUbicacion.setVisible(true);
+        tipo="ubicacion";
+        valor=Ejercicio2.sacarvalor( tipo, NombreE.getText());
+        Ubicacion.setText(valor);
     }//GEN-LAST:event_CUbicacionActionPerformed
 
     private void CFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CFechaActionPerformed
         SFecha.setVisible(true);
+        tipo="fecha";
+        fecha=Ejercicio2.sacarvalorF( tipo, NombreE.getText());
+        Fecha.setText(fecha.toString());
     }//GEN-LAST:event_CFechaActionPerformed
 
     private void comprobar(String tipo, String valor) {
-        int x=0;
-        
         do{
-            if(valor.isEmpty()){
-                valor=JOptionPane.showInputDialog("Tiene que rellenar el nombre del evento que quiere ver");
+            if(valor.isEmpty()){  
+                JOptionPane.showMessageDialog(null,"Tiene que rellenar el apartado del nombre del acontecimiento cuyos datos desea ver");
+            }       
+       
+            else{
+                mat1=patl.matcher(valor);
+                if (mat1.matches()){
+                    seguir=Ejercicio2.comprobar(tipo, ventana, valor, NombreE.getText(), seguir);
+                    if(seguir=false){    
+                        valor=JOptionPane.showInputDialog("Intentalo de nuevo");                
+                    }
+                }
+           
+                else{
+                    valor=JOptionPane.showInputDialog("ha introducido un valor incorrecto o demasiado largo, intentelo de nuevo");
+                    seguir=false;
+                }
             }
-    
-           mat1=patl.matcher(valor);
-           if (mat1.matches()){
-                Ejercicio2.comprobar(tipo, ventana, valor, NombreE.getText(), seguir);
-                x++;
-                seguir=true;
-           } 
-           else{
-               
-           }
-       }while (seguir=false);
+        }while(seguir = false);
     }
     /**
      * @param args the command line arguments

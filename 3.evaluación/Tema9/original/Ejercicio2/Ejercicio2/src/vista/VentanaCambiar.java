@@ -586,23 +586,32 @@ public class VentanaCambiar extends javax.swing.JFrame {
     }
 
     private void comprobar(String tipo, String valor) {
-       if(valor.isEmpty()){
-            if(tipo.equals("nombreE")){
-                JOptionPane.showMessageDialog(null,"Tiene que rellenar el apartado del nombre del acontecimiento cuyos datos desea cambiar");
-            }
+        do{
+            if(valor.isEmpty()){
+                if(tipo.equals("nombreE")){
+                    JOptionPane.showMessageDialog(null,"Tiene que rellenar el apartado del nombre del acontecimiento cuyos datos desea cambiar");
+                }
             
-            else{
-                JOptionPane.showMessageDialog(null,"Tiene que rellenar el apartado "+tipo);
+                else{
+                    JOptionPane.showMessageDialog(null,"Tiene que rellenar el apartado "+tipo);
+                }
             }
-       }
        
-       else{
-           mat1=patl.matcher(valor);
-           if (mat1.matches()){
-            do{
-                Ejercicio2.comprobar(tipo, ventana, valor, NombreE.getText(), seguir);
-                }while(seguir = false);
+       
+            else{
+                mat1=patl.matcher(valor);
+                if (mat1.matches()){
+                    seguir=Ejercicio2.comprobar(tipo, ventana, valor, NombreE.getText(), seguir);
+                    if(seguir=false){    
+                        valor=JOptionPane.showInputDialog("Intentalo de nuevo");                
+                    }
+                }
+           
+                else{
+                    valor=JOptionPane.showInputDialog("ha introducido un valor incorrecto o demasiado largo, intentelo de nuevo");
+                    seguir=false;
+                }
             }
-       }
+        }while(seguir = false);
     }
 }
