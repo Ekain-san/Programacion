@@ -62,10 +62,6 @@ public class Ejercicio2 {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public static void pantallaAlta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public static void cambiarPantalla(String ventana) {
         vp.setVisible(false);
         switch(ventana){
