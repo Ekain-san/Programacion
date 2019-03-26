@@ -77,11 +77,13 @@ public class ControladorVentanas {
     public static void volverAPrincipal(String ventana) {
         switch(ventana){
             case "cambios":vca.setVisible(false);
-                           break;
+                        break;
             case "alta":vd.setVisible(false);
                         break;
             case "cancelar":vc.setVisible(false);
-                            break;
+                        break;
+            case "ver":vv.setVisible(false);
+                        break;
         }
         Ejercicio2.desconectar();
         vp.setVisible(true);

@@ -107,7 +107,6 @@ public class ControladorClases {
         LocalTime hora;
         hora=bde.sacarHora(nombre,tipo);
         return hora;
-    }
-   
+    }   
 }
  
