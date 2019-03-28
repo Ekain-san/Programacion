@@ -14,13 +14,30 @@ import vista.*;
 import vista.vistaVer.*;
 public class ControladorVentanas {
    private static VentanaPrincipal vp;
-   private static VentanaDarAlta vd;
+   private static VentanaAlta va;
    private static VentanaCancelar vc;
    private static VentanaCambiar vca;
    private static VentanaVer vv;
    private static VentanaInscribir vi;
-   private static VentanaAgregarEmpresa vap; 
+   private static VentanaAgregarE ve; 
    
+   private static VentanaVEmpresa vvm;
+   private static VentanaVEvento vve;
+   private static VentanaVPersona vvp;
+   
+   private static void crear(){
+       vp= new VentanaPrincipal();
+       va= new VentanaAlta();
+       vc=new VentanaCancelar();
+       vca= new VentanaCambiar();
+       vv= new VentanaVer();
+       vi= new VentanaInscribir();
+       ve=new VentanaAgregarE();
+       
+       vvm=new VentanaVEmpresa();
+       vve=new VentanaVEvento();
+       vvp=new VentanaVPersona();
+   }
    
     public static void iniciarPrograma() {
         vp.setVisible(true);
@@ -29,7 +46,7 @@ public class ControladorVentanas {
     public static void pantallaAlta(){
         vp.setVisible(false);
         Ejercicio2.conectar();
-        vd.setVisible(true);
+        va.setVisible(true);
     }
     
     public static void pantallaCancelar(){
@@ -53,7 +70,7 @@ public class ControladorVentanas {
     public static void pantallaAgregarEmpresa(){
         vp.setVisible(false);
         Ejercicio2.conectar();
-        vap.setVisible(true);
+        ve.setVisible(true);
     }
     
         public static void pantallaVer() {
@@ -62,7 +79,7 @@ public class ControladorVentanas {
         vv.setVisible(true);
     }
     
-    public static void Salir(){
+    public static void salir(){
         System.exit(0);
     }
 
@@ -71,14 +88,15 @@ public class ControladorVentanas {
     }
 
     public static void agregar() {
-        vd.agregar();
+        va.agregar();
     }
     
     public static void volverAPrincipal(String ventana) {
+        Ejercicio2.desconectar();
         switch(ventana){
             case "cambios":vca.setVisible(false);
                         break;
-            case "alta":vd.setVisible(false);
+            case "alta":va.setVisible(false);
                         break;
             case "cancelar":vc.setVisible(false);
                         break;
@@ -87,5 +105,31 @@ public class ControladorVentanas {
         }
         Ejercicio2.desconectar();
         vp.setVisible(true);
+    }
+
+    public static void verOtro(String ventana) {
+        vv.setVisible(false);
+        Ejercicio2.conectar();
+        switch(ventana){
+            case "verEvento":vve.setVisible(true);
+                break;
+            case "verEmpresa":vvm.setVisible(true);
+                break;
+            case "verPersona":vvp.setVisible(true);
+                break;
+        }
+    }
+    
+    public static void volverAMenuVer(String ventana) {
+        Ejercicio2.desconectar();
+        switch(ventana){
+            case "verEvento":vve.setVisible(false);
+                break;
+            case "verEmpresa":vvm.setVisible(false);
+                break;
+            case "verPersona":vvp.setVisible(false);
+                break;
+        }
+        vv.setVisible(true);
     }
 }

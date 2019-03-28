@@ -67,8 +67,8 @@ public class Ejercicio2 {
         ControladorVentanas.pantallaVer();
     }
     
-    public static void Salir(){
-        ControladorVentanas.Salir();
+    public static void salir(){
+        ControladorVentanas.salir();
     }
     
     public static void conectar(){
@@ -119,7 +119,7 @@ public class Ejercicio2 {
         return ubicacion;        
     }
 
-    public static boolean ComprobarH(String tipo,String nombre, LocalTime hora, boolean seguir) {
+    public static boolean comprobarH(String tipo,String nombre, LocalTime hora, boolean seguir) {
         seguir=Comprobador.comprobarH(tipo, nombre, hora, seguir);
         return seguir;
     }
@@ -145,5 +145,25 @@ public class Ejercicio2 {
         String dato;
         dato= ControladorClases.sacarDato(tipo, nombre);
         return dato;
+    }
+
+    public static void verOtro(String ventana) {
+        ControladorVentanas.verOtro(ventana);
+    }
+    
+    public static void volverAMenuVer(String ventana){
+        ControladorVentanas.volverAMenuVer(ventana);
+    }
+
+    public static LocalTime sacarvalorH(String tipo, String nombre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static String sacarvalor(String tipo, String nombre,String ventana) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static LocalDate sacarvalorF(String tipo, String nombre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

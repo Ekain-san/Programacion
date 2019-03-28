@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista;
+package vista.vistaVer;
 
 /**
  *
@@ -15,13 +15,13 @@ import java.time.LocalTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
-public class VentanaVer extends javax.swing.JFrame {
+public class VentanaVEvento extends javax.swing.JFrame {
 
     /**
      * Creates new form VistaVer
      */
     
-    public VentanaVer() {
+    public VentanaVEvento() {
         initComponents();
         SNombre.setVisible(false);
         SHFinal.setVisible(false);
@@ -390,7 +390,7 @@ public class VentanaVer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private Pattern patl=Pattern.compile("^[A-Z][a-z]{0,9}$");
-    private String ventana="ver";
+    private String ventana="verEvento";
     private boolean seguir;
     private Matcher mat1;
     private String tipo;
@@ -416,12 +416,12 @@ public class VentanaVer extends javax.swing.JFrame {
     private void CAforoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CAforoActionPerformed
         SAforo.setVisible(true);
         tipo="aforo";
-        valor=Ejercicio2.sacarvalor( tipo, NombreE.getText());
+        valor=Ejercicio2.sacarvalor( tipo, NombreE.getText(),ventana);
         Aforo.setText(valor);
     }//GEN-LAST:event_CAforoActionPerformed
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
-        Ejercicio2.volverAPrincipal(ventana);
+        Ejercicio2.volverAMenuVer(ventana);
     }//GEN-LAST:event_VolverActionPerformed
 
     private void NombreEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreEFocusLost
@@ -432,14 +432,14 @@ public class VentanaVer extends javax.swing.JFrame {
     private void CNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CNombreActionPerformed
         SNombre.setVisible(true);
         tipo="nombre";
-        valor=Ejercicio2.sacarvalor( tipo, NombreE.getText());
+        valor=Ejercicio2.sacarvalor( tipo, NombreE.getText(),ventana);
         Nombre.setText(valor);
     }//GEN-LAST:event_CNombreActionPerformed
 
     private void CUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CUbicacionActionPerformed
         SUbicacion.setVisible(true);
         tipo="ubicacion";
-        valor=Ejercicio2.sacarvalor( tipo, NombreE.getText());
+        valor=Ejercicio2.sacarvalor( tipo, NombreE.getText(),ventana);
         Ubicacion.setText(valor);
     }//GEN-LAST:event_CUbicacionActionPerformed
 
@@ -453,7 +453,8 @@ public class VentanaVer extends javax.swing.JFrame {
     private void comprobar(String tipo, String valor) {
         do{
             if(valor.isEmpty()){  
-                JOptionPane.showMessageDialog(null,"Tiene que rellenar el apartado del nombre del acontecimiento cuyos datos desea ver");
+                valor=JOptionPane.showInputDialog(null,"Tiene que rellenar el apartado del nombre del acontecimiento cuyos datos desea ver");
+                seguir=false;
             }       
        
             else{
@@ -489,14 +490,26 @@ public class VentanaVer extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaVer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaVEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaVer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaVEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaVer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaVEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaVer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaVEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -505,7 +518,7 @@ public class VentanaVer extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaVer().setVisible(true);
+                new VentanaVEvento().setVisible(true);
             }
         });
     }
@@ -526,8 +539,6 @@ public class VentanaVer extends javax.swing.JFrame {
     private javax.swing.JLabel Label1;
     private javax.swing.JLabel Nombre;
     private javax.swing.JTextField NombreE;
-    private javax.swing.JTextField NombreE1;
-    private javax.swing.JTextField NombreE2;
     private javax.swing.JPanel SAforo;
     private javax.swing.JPanel SFecha;
     private javax.swing.JPanel SHFinal;

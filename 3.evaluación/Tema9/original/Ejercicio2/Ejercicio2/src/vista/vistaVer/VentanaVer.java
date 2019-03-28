@@ -8,7 +8,7 @@ package vista.vistaVer;
 /**
  *
  * @author Asus
- */
+ */import ejercicio2.Ejercicio2;
 public class VentanaVer extends javax.swing.JFrame {
 
     /**
@@ -30,7 +30,7 @@ public class VentanaVer extends javax.swing.JFrame {
         selección = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         Empresa = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        Persona = new javax.swing.JRadioButton();
         Evento = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,10 +45,10 @@ public class VentanaVer extends javax.swing.JFrame {
             }
         });
 
-        jRadioButton1.setText("Persona");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        Persona.setText("Persona");
+        Persona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                PersonaActionPerformed(evt);
             }
         });
 
@@ -71,7 +71,7 @@ public class VentanaVer extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(Empresa)
                 .addGap(48, 48, 48)
-                .addComponent(jRadioButton1)
+                .addComponent(Persona)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(Evento)
                 .addGap(66, 66, 66))
@@ -84,24 +84,27 @@ public class VentanaVer extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Empresa)
-                    .addComponent(jRadioButton1)
+                    .addComponent(Persona)
                     .addComponent(Evento))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private String ventana;
     private void EmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpresaActionPerformed
-        
+        ventana="verEmpresa";
+        Ejercicio2.verOtro(ventana);
     }//GEN-LAST:event_EmpresaActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    private void PersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PersonaActionPerformed
+        ventana="verPersona";
+        Ejercicio2.verOtro(ventana);
+    }//GEN-LAST:event_PersonaActionPerformed
 
     private void EventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventoActionPerformed
-        // TODO add your handling code here:
+        ventana="verEmpresa";
+        Ejercicio2.verOtro(ventana);
     }//GEN-LAST:event_EventoActionPerformed
 
     /**
@@ -145,8 +148,8 @@ public class VentanaVer extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Empresa;
     private javax.swing.JRadioButton Evento;
+    private javax.swing.JRadioButton Persona;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.ButtonGroup selección;
     // End of variables declaration//GEN-END:variables
 }

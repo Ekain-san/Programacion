@@ -220,7 +220,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cambiarActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-        Ejercicio2.Salir();
+        Ejercicio2.salir();
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void VerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerActionPerformed

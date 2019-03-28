@@ -453,7 +453,7 @@ public class VentanaCambiar extends javax.swing.JFrame {
     }//GEN-LAST:event_NombreFocusLost
 
     private void NombreEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreEFocusLost
-        tipo="nombre";
+        tipo="nombreE";
         valor=Nombre.getText();
         comprobar(tipo, valor);
     }//GEN-LAST:event_NombreEFocusLost
@@ -467,14 +467,14 @@ public class VentanaCambiar extends javax.swing.JFrame {
 
     private void FechaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FechaFocusLost
         dia = Fecha.getDate();
-        comprobar(tipo, valor);
+        seguir=Ejercicio2.comprobarD(dia, NombreE.getText(),seguir);
         Ejercicio2.cambiarD(NombreE.getText(),tipo,dia);
     }//GEN-LAST:event_FechaFocusLost
 
     private void HoraIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_HoraIFocusLost
         LocalTime hora=HoraI.getTime();
         tipo="horaI";
-        comprobar(tipo, valor);
+        seguir=Ejercicio2.comprobarH(tipo, dia, NombreE.getText(),seguir);
         Ejercicio2.cambiarH(NombreE.getText(),tipo,hora);
     }//GEN-LAST:event_HoraIFocusLost
 
@@ -573,11 +573,11 @@ public class VentanaCambiar extends javax.swing.JFrame {
         do{
             if(valor.isEmpty()){
                 if(tipo.equals("nombreE")){
-                    JOptionPane.showMessageDialog(null,"Tiene que rellenar el apartado del nombre del acontecimiento cuyos datos desea cambiar");
+                    valor=JOptionPane.showInputDialog("Tiene que rellenar el apartado del nombre del acontecimiento cuyos datos desea cambiar");
                 }
             
                 else{
-                    JOptionPane.showMessageDialog(null,"Tiene que rellenar el apartado "+tipo);
+                    valor=JOptionPane.showInputDialog("Tiene que rellenar el apartado "+tipo);
                 }
             }
        
