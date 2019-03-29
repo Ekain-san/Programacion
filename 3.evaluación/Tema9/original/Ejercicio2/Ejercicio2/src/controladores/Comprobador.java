@@ -36,28 +36,59 @@ public class Comprobador {
     public static boolean comprobar(String tipo, String ventana, String valor, String nombre, boolean seguir) {
         String dato;
         dato= Ejercicio2.sacarDato(tipo, nombre);
-
+        
         if(dato.equals(valor) && ventana.equals("alta")){
-            JOptionPane.showMessageDialog(null, "Ya exista este acontecimiento");
-        }
+            switch(ventana){
+                case "alta": JOptionPane.showMessageDialog(null, "Ya exista este acontecimiento");
+                    return seguir=false;
 
-        else{
-            if(!dato.equals(valor)&& tipo.equals("nombreE")){
-                JOptionPane.showMessageDialog(null, "Este acontecimiento no existe");
-            }
-
-            else{
-                if(dato.equals(valor)&&!tipo.equals("nombreE")&&ventana.equals("cambiar")){
-                    JOptionPane.showMessageDialog(null, "Estos datos ya fueron introducidos previamente cuando el elemento fue creado");
-                }
-                else{
-                    if(!dato.equals(valor)&& tipo.equals("nombre") && ventana.equals("cancelar")){
-                        JOptionPane.showMessageDialog(null, "Este acontecimiento no existe");
+                case "inscribir": JOptionPane.showMessageDialog(null, "Ya exista este acontecimiento");
+                    return seguir=false;
+                    
+                case "altaEmpresa": JOptionPane.showMessageDialog(null, "Ya exista este acontecimiento");
+                    return seguir=false;
+                    
+                default: 
+                    if(ventana.equals("cambiar")){
+                        JOptionPane.showMessageDialog(null, "Estos datos ya fueron introducidos previamente cuando el elemento fue creado");
+                        return seguir=false;
                     }
-                        
-                }   
-            }   
+                    else
+                        return seguir=true;
+                }
         }
-        return seguir=true;
+
+        else if(!dato.equals(valor)){
+            switch(tipo){
+                case "nombreE": 
+                    switch(ventana){
+                        case"cambiar": 
+                        case "verEvento":
+                            JOptionPane.showMessageDialog(null, "Este acontecimiento no existe");
+                            return seguir=false;
+                            
+                        case "verEmpresa":
+                            JOptionPane.showMessageDialog(null, "Esta empresa no existe");
+                            return seguir=false;
+                    
+                        case"verPersona":
+                            JOptionPane.showMessageDialog(null, "Esta persona no existe");
+                            return seguir=false;
+                    }
+                    
+                case "nombre":
+                    if(ventana.equals("cancelar")){
+                        return seguir=false;
+                    }
+                    else
+                       return seguir=true; 
+                        
+                default: return seguir=true;
+            }
+        }
+        
+        else{
+            return seguir=true;
+        }
     }
 }

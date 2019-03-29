@@ -25,14 +25,13 @@ public class Ejercicio2 {
      */
       
        
-       private static Connection con;
-       
-       
-       private static String ubicacion;
+    private static Connection con;
+    private static String ubicacion;
 
        
     public static void main(String[] args) {
         ControladorClases.accederClaseslBD();
+        ControladorVentanas.iniciarPrograma();
     }
 
     public static void cercionar(String ventana) {

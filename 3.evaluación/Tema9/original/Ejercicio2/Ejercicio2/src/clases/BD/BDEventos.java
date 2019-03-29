@@ -201,7 +201,7 @@ public class BDEventos {
             String ubicacion=resultado.getString(2);
             LocalDate fecha=resultado.getTime(3).toInstant() .atZone(ZoneId.systemDefault()) .toLocalDate();
             LocalTime horaI=resultado.getDate(4).toInstant() .atZone(ZoneId.systemDefault()) .toLocalTime();
-            LocalTime hora=resultado.getDate(5).toInstant() .atZone(ZoneId.systemDefault()) .toLocalTime();
+            LocalTime horaF=resultado.getDate(5).toInstant() .atZone(ZoneId.systemDefault()) .toLocalTime();
             String aforo=Integer.toString(resultado.getInt(6));
             Evento ev;
             ev= new Evento(nombre,ubicacion,fecha, horaI, horaF, aforo);
