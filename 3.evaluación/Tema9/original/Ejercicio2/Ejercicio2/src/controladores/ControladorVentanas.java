@@ -102,6 +102,10 @@ public class ControladorVentanas {
                         break;
             case "ver":vv.setVisible(false);
                         break;
+            case "agregar":ve.setVisible(false);
+                        break;
+            case "inscribir": vi.setVisible(false);
+                        break;
         }
         Ejercicio2.desconectar();
         vp.setVisible(true);

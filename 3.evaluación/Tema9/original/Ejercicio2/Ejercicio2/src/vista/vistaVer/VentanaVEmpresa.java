@@ -224,7 +224,7 @@ public class VentanaVEmpresa extends javax.swing.JFrame {
     private String valor;
     private void CNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CNombreActionPerformed
         SNombre.setVisible(true);
-        tipo="nombr";
+        tipo="nombreE";
         valor=Ejercicio2.sacarValor( tipo, NombreE.getText(),ventana);
         Nombre.setText(valor);
     }//GEN-LAST:event_CNombreActionPerformed

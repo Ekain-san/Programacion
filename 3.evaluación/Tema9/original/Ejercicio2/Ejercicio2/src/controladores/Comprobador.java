@@ -45,7 +45,7 @@ public class Comprobador {
                 case "inscribir": JOptionPane.showMessageDialog(null, "Ya exista este acontecimiento");
                     return seguir=false;
                     
-                case "altaEmpresa": JOptionPane.showMessageDialog(null, "Ya exista este acontecimiento");
+                case "agregar": JOptionPane.showMessageDialog(null, "Ya exista este acontecimiento");
                     return seguir=false;
                     
                 default: 

@@ -107,10 +107,15 @@ public class ControladorClases {
     public static String sacarValor(String tipo, String nombre, String ventana) {
         String valor="";
         switch (ventana){
+            case "alta":
+            case "cancelar":
+            case "cambiar":
             case "verEvento": valor=bde.sacarDato(tipo, nombre);
                 break;
+            case "agregar":
             case "verEmpresa": valor=bdem.sacarDato(tipo, nombre);
                 break;
+            case "inscribir":
             case "verPersona": valor=bdp.sacarDato(tipo, nombre);
                 break;
         }
