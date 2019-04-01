@@ -77,11 +77,6 @@ public class ControladorClases {
         ubicacion=bde.tomarUbicacion();
         return ubicacion;        
     }
-     
-    public static Evento buscar(String nombre){
-       ev=bde.consultar(nombre); 
-       return ev;
-    }
 
     public static void conectar() {
         bd.conectar();
@@ -107,6 +102,19 @@ public class ControladorClases {
         LocalTime hora;
         hora=bde.sacarHora(nombre,tipo);
         return hora;
+    }
+
+    public static String sacarValor(String tipo, String nombre, String ventana) {
+        String valor="";
+        switch (ventana){
+            case "verEvento": valor=bde.sacarDato(tipo, nombre);
+                break;
+            case "verEmpresa": valor=bdem.sacarDato(tipo, nombre);
+                break;
+            case "verPersona": valor=bdp.sacarDato(tipo, nombre);
+                break;
+        }
+        return valor;
     }
 }
  

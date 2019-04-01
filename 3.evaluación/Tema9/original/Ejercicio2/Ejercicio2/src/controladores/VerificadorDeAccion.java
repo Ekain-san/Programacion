@@ -34,16 +34,13 @@ public class VerificadorDeAccion {
     }
     
     private static String seguridad() {
-        estarSeguro=JOptionPane.showInputDialog("¿Esta seguro? N (no), s (sí)");
+        estarSeguro=JOptionPane.showInputDialog("¿Esta seguro? N (no), s (sí)").toLowerCase();
         switch (estarSeguro){
             case "s": estarSeguro="sí";
                       break;
-            case "S": estarSeguro="sí";
-                      break;
             case "n": estarSeguro="no";
                       break;
-            case "N": estarSeguro="no";
-                      break;
+                      
             default: estarSeguro="no";
                       break;
         }; 
@@ -51,15 +48,11 @@ public class VerificadorDeAccion {
     }
 
     private static String seguir() {
-        otro=JOptionPane.showInputDialog("¿Desea hacer más? N (no), s (sí)");
+        otro=JOptionPane.showInputDialog("¿Desea hacer más? N (no), s (sí)").toLowerCase();
         switch (otro){
             case "s": otro="sí";
                       break;
-            case "S": otro="sí";
-                      break;
             case "n": otro="no";
-                      break;
-            case "N": otro="no";
                       break;
             default: otro="no";
                       break;

@@ -106,12 +106,6 @@ public class Ejercicio2 {
      public static void darAlta(String nombre, String ubicacion, LocalDate fecha, LocalTime horaI, LocalTime horaF, String aforo){
          ControladorClases.darAlta(nombre, ubicacion, fecha, horaI, horaF, aforo);
     }
-     
-     public  static Evento buscar(String nombre){
-        Evento ev;
-        ev=ControladorClases.buscar(nombre);
-        return ev;
-     }
 
     public static String tomarUbicacion() {
         ubicacion=ControladorClases.tomarUbicacion();
@@ -154,15 +148,19 @@ public class Ejercicio2 {
         ControladorVentanas.volverAMenuVer(ventana);
     }
 
-    public static LocalTime sacarvalorH(String tipo, String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static LocalTime sacarValorH(String tipo, String nombre) {
+       LocalTime hora=ControladorClases.sacarHora(nombre, tipo);
+       return hora;
     }
 
-    public static String sacarvalor(String tipo, String nombre,String ventana) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static String sacarValor(String tipo, String nombre,String ventana) {
+        String valor;
+        valor= ControladorClases.sacarValor(tipo, nombre,ventana);
+        return valor;
     }
 
-    public static LocalDate sacarvalorF(String tipo, String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static LocalDate sacarValorF(String tipo, String nombre) {
+        LocalDate dia=ControladorClases.sacarDia(nombre, tipo);
+        return dia;
     }
 }

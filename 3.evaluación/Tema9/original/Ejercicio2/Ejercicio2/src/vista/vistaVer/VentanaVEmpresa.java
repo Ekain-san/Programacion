@@ -43,7 +43,7 @@ public class VentanaVEmpresa extends javax.swing.JFrame {
         CTelefono = new javax.swing.JCheckBox();
         SNombre = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        Nombre = new javax.swing.JLabel();
         SDireccion = new javax.swing.JPanel();
         Direccion = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -97,7 +97,7 @@ public class VentanaVEmpresa extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
         );
         SNombreLayout.setVerticalGroup(
@@ -105,7 +105,7 @@ public class VentanaVEmpresa extends javax.swing.JFrame {
             .addGroup(SNombreLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(SNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -147,9 +147,8 @@ public class VentanaVEmpresa extends javax.swing.JFrame {
         );
         STelefonoLayout.setVerticalGroup(
             STelefonoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(STelefonoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(Telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                .addComponent(jLabel6))
+            .addComponent(jLabel6)
+            .addComponent(Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         Volver.setText("Volver");
@@ -171,17 +170,16 @@ public class VentanaVEmpresa extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(SNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(CNombre)
-                                    .addGap(28, 28, 28)
-                                    .addComponent(CDireccion)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(CTelefono))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addComponent(NombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(SNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(CNombre)
+                                .addGap(28, 28, 28)
+                                .addComponent(CDireccion)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CTelefono))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(NombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(SDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(STelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -226,22 +224,31 @@ public class VentanaVEmpresa extends javax.swing.JFrame {
     private String valor;
     private void CNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CNombreActionPerformed
         SNombre.setVisible(true);
+        tipo="nombr";
+        valor=Ejercicio2.sacarValor( tipo, NombreE.getText(),ventana);
+        Nombre.setText(valor);
     }//GEN-LAST:event_CNombreActionPerformed
 
     private void CDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CDireccionActionPerformed
         SDireccion.setVisible(true);
+        tipo="direccion";
+        valor=Ejercicio2.sacarValor( tipo, NombreE.getText(),ventana);
+        Direccion.setText(valor);
     }//GEN-LAST:event_CDireccionActionPerformed
 
     private void CTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CTelefonoActionPerformed
         STelefono.setVisible(true);
+        tipo="telefono";
+        valor=Ejercicio2.sacarValor( tipo, NombreE.getText(),ventana);
+        Telefono.setText(valor);
     }//GEN-LAST:event_CTelefonoActionPerformed
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
-        // TODO add your handling code here:
+        Ejercicio2.volverAMenuVer(ventana);
     }//GEN-LAST:event_VolverActionPerformed
 
     private void NombreEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreEFocusLost
-        // TODO add your handling code here:
+        comprobar("nombreE",NombreE.getText());
     }//GEN-LAST:event_NombreEFocusLost
     private void comprobar(String tipo, String valor) {
         do{
@@ -307,6 +314,7 @@ public class VentanaVEmpresa extends javax.swing.JFrame {
     private javax.swing.JCheckBox CNombre;
     private javax.swing.JCheckBox CTelefono;
     private javax.swing.JLabel Direccion;
+    private javax.swing.JLabel Nombre;
     private javax.swing.JTextField NombreE;
     private javax.swing.JPanel SDireccion;
     private javax.swing.JPanel SNombre;
@@ -316,7 +324,6 @@ public class VentanaVEmpresa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables

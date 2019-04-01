@@ -155,12 +155,6 @@ public class BDEventos {
            return null;
        }
     }
-
-
-    public void cambiar(Evento ev) {
-        
-    }
-
     
     public Date convertidor(LocalDate fecha) {
         Date fechaE = java.sql.Date.valueOf(fecha);
@@ -190,30 +184,6 @@ public class BDEventos {
         }
     }
 
-
-    public Evento consultar(String nombre) {
-        try{    
-            String plantilla = "select * from aconticimientos where nombre = ?;";
-            PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.setString(1,nombre);
-            ResultSet resultado = ps.executeQuery();
-            nombre = resultado.getString(1);
-            String ubicacion=resultado.getString(2);
-            LocalDate fecha=resultado.getTime(3).toInstant() .atZone(ZoneId.systemDefault()) .toLocalDate();
-            LocalTime horaI=resultado.getDate(4).toInstant() .atZone(ZoneId.systemDefault()) .toLocalTime();
-            LocalTime horaF=resultado.getDate(5).toInstant() .atZone(ZoneId.systemDefault()) .toLocalTime();
-            String aforo=Integer.toString(resultado.getInt(6));
-            Evento ev;
-            ev= new Evento(nombre,ubicacion,fecha, horaI, horaF, aforo);
-            return ev;
-        }
-
-        catch(Exception e){
-            return null;
-        }
-    }
-
-
     public LocalTime sacarHora(String nombre, String tipo) {
         try{
             if(tipo.equals("horaI"))
@@ -227,8 +197,12 @@ public class BDEventos {
             ps.setString(1,tipo);
             ps.setString(2,nombre);
             ResultSet resultado = ps.executeQuery();
-            LocalTime hora= resultado.getTime(1).toInstant() .atZone(ZoneId.systemDefault()) .toLocalTime();
-            return hora;
+             if (resultado.next()){
+                 LocalTime hora= resultado.getTime(1).toInstant() .atZone(ZoneId.systemDefault()) .toLocalTime();
+                return hora;
+             }
+            else
+               return null;
         }
         
         catch(Exception e){
@@ -244,8 +218,12 @@ public class BDEventos {
             ps.setString(1,tipo);
             ps.setString(2,nombre);
             ResultSet resultado = ps.executeQuery();
-            LocalDate dia= resultado.getTime(1).toInstant() .atZone(ZoneId.systemDefault()) .toLocalDate();
-            return dia;
+            if (resultado.next()){
+                 LocalDate dia= resultado.getDate(1).toInstant() .atZone(ZoneId.systemDefault()) .toLocalDate();
+                return dia;
+             }
+            else
+               return null;
         }
         
         catch(Exception e){

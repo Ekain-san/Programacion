@@ -401,7 +401,7 @@ public class VentanaVEvento extends javax.swing.JFrame {
     private void CHInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHInicioActionPerformed
         SHInicio.setVisible(true);
         tipo="horaI";
-        hora=Ejercicio2.sacarvalorH( tipo, NombreE.getText());
+        hora=Ejercicio2.sacarValorH( tipo, NombreE.getText());
         Nombre.setText(hora.toString());
     }//GEN-LAST:event_CHInicioActionPerformed
 
@@ -409,14 +409,14 @@ public class VentanaVEvento extends javax.swing.JFrame {
         SHFinal.setVisible(true);
         tipo="ubicacion";
         tipo="horaF";
-        hora=Ejercicio2.sacarvalorH( tipo, NombreE.getText());
+        hora=Ejercicio2.sacarValorH( tipo, NombreE.getText());
         Nombre.setText(hora.toString());
     }//GEN-LAST:event_CHFinActionPerformed
 
     private void CAforoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CAforoActionPerformed
         SAforo.setVisible(true);
         tipo="aforo";
-        valor=Ejercicio2.sacarvalor( tipo, NombreE.getText(),ventana);
+        valor=Ejercicio2.sacarValor( tipo, NombreE.getText(),ventana);
         Aforo.setText(valor);
     }//GEN-LAST:event_CAforoActionPerformed
 
@@ -432,21 +432,21 @@ public class VentanaVEvento extends javax.swing.JFrame {
     private void CNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CNombreActionPerformed
         SNombre.setVisible(true);
         tipo="nombre";
-        valor=Ejercicio2.sacarvalor( tipo, NombreE.getText(),ventana);
+        valor=Ejercicio2.sacarValor( tipo, NombreE.getText(),ventana);
         Nombre.setText(valor);
     }//GEN-LAST:event_CNombreActionPerformed
 
     private void CUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CUbicacionActionPerformed
         SUbicacion.setVisible(true);
         tipo="ubicacion";
-        valor=Ejercicio2.sacarvalor( tipo, NombreE.getText(),ventana);
+        valor=Ejercicio2.sacarValor( tipo, NombreE.getText(),ventana);
         Ubicacion.setText(valor);
     }//GEN-LAST:event_CUbicacionActionPerformed
 
     private void CFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CFechaActionPerformed
         SFecha.setVisible(true);
         tipo="fecha";
-        fecha=Ejercicio2.sacarvalorF( tipo, NombreE.getText());
+        fecha=Ejercicio2.sacarValorF( tipo, NombreE.getText());
         Fecha.setText(fecha.toString());
     }//GEN-LAST:event_CFechaActionPerformed
 
