@@ -51,7 +51,7 @@ public class VentanaAlta extends javax.swing.JFrame {
         Fecha = new com.github.lgooddatepicker.components.DatePicker();
         HoraI = new com.github.lgooddatepicker.components.TimePicker();
         HoraF = new com.github.lgooddatepicker.components.TimePicker();
-        BotonAgregar = new javax.swing.JButton();
+        BAlta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -204,11 +204,11 @@ public class VentanaAlta extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        BotonAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_199_CircledPlus_183316.png"))); // NOI18N
-        BotonAgregar.setText("Agregar");
-        BotonAgregar.addActionListener(new java.awt.event.ActionListener() {
+        BAlta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_199_CircledPlus_183316.png"))); // NOI18N
+        BAlta.setText("Dar alta");
+        BAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonAgregarActionPerformed(evt);
+                BAltaActionPerformed(evt);
             }
         });
 
@@ -218,7 +218,7 @@ public class VentanaAlta extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BotonAgregar)
+                    .addComponent(BAlta)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
@@ -241,9 +241,9 @@ public class VentanaAlta extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BotonAgregar)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(BAlta)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -262,10 +262,10 @@ public class VentanaAlta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_AforoActionPerformed
 
-    private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
+    private void BAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAltaActionPerformed
         if(ventana.equals("alta")){
             Ejercicio2.cercionar(ventana);
-    }    }//GEN-LAST:event_BotonAgregarActionPerformed
+    }    }//GEN-LAST:event_BAltaActionPerformed
 
     private void NombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreFocusLost
         tipo="nombre";
@@ -286,7 +286,7 @@ public class VentanaAlta extends javax.swing.JFrame {
     }//GEN-LAST:event_AforoFocusLost
 
     private void FechaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FechaFocusLost
-    
+        
     }//GEN-LAST:event_FechaFocusLost
     /**
      * @param args the command line arguments
@@ -332,7 +332,7 @@ public class VentanaAlta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Aforo;
-    private javax.swing.JButton BotonAgregar;
+    private javax.swing.JButton BAlta;
     private com.github.lgooddatepicker.components.DatePicker Fecha;
     private com.github.lgooddatepicker.components.TimePicker HoraF;
     private com.github.lgooddatepicker.components.TimePicker HoraI;
@@ -351,7 +351,7 @@ public class VentanaAlta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 
-    public void agregar() {
+    public void darAlta() {
         Ejercicio2.darAlta(Nombre.getText(), Ubicacion.getText(), Fecha.getDate(), HoraI.getTime(), HoraF.getTime(), Aforo.getText());
     }
 

@@ -42,24 +42,25 @@ public class VentanaAgregarE extends javax.swing.JFrame {
         Direccion = new javax.swing.JTextField();
         Telefono = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        BAgregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel1.setText("Garacorra San France SA");
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 255));
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre");
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Direccion");
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Telefono");
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -133,8 +134,21 @@ public class VentanaAgregarE extends javax.swing.JFrame {
                 .addComponent(Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel2.setText("Añada nuestra empresa a nuestra lista");
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+
+        BAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_199_CircledPlus_183316.png"))); // NOI18N
+        BAgregar.setText("Agregar");
+        BAgregar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                BAgregarFocusLost(evt);
+            }
+        });
+        BAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BAgregarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,6 +157,7 @@ public class VentanaAgregarE extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BAgregar)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1)
@@ -160,7 +175,9 @@ public class VentanaAgregarE extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(BAgregar)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
@@ -169,34 +186,49 @@ private String valor;
 private String tipo;
 private boolean seguir;
 private Matcher mat1;
-private Pattern pat1=Pattern.compile("^[A-Z][a-z]{0,9}$");;
+private Pattern pat1=Pattern.compile("^[A-Z][a-z]{0,9}$");
+private Pattern pat2=Pattern.compile("^[6-9][0-9]{8}$");
+private Pattern pat3=Pattern.compile("^calle [A-Z][a-z]{0,9} / [1,9][0-9]{0,2}$");
 private String ventana="agregar";
     private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NombreActionPerformed
 
     private void NombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreFocusLost
-        // TODO add your handling code here:
+        tipo="nombre";
+        comprobar(tipo,Nombre.getText());
     }//GEN-LAST:event_NombreFocusLost
 
     private void DireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DireccionFocusLost
-        // TODO add your handling code here:
+        tipo="direccion";
+        comprobar(tipo,Nombre.getText());
     }//GEN-LAST:event_DireccionFocusLost
 
     private void TelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TelefonoFocusLost
-        // TODO add your handling code here:
+        tipo="telefono";
+        comprobar(tipo,Nombre.getText());
     }//GEN-LAST:event_TelefonoFocusLost
+
+    private void BAgregarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_BAgregarFocusLost
+    }//GEN-LAST:event_BAgregarFocusLost
+
+    private void BAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAgregarActionPerformed
+        Ejercicio2.cercionar(ventana);
+    }//GEN-LAST:event_BAgregarActionPerformed
 private void comprobar(String tipo, String valor) {
         do{
             if(valor.isEmpty()){
                 valor=JOptionPane.showInputDialog("Tiene que rellenar el apartado "+tipo);
                 seguir=false;
-              
             }
        
-       
             else{
-                mat1=pat1.matcher(valor);
+                switch (tipo){
+                    case "nombre":mat1=pat1.matcher(valor);
+                    case "direccion": mat1=pat3.matcher(valor);
+                    case "telefono": mat1=pat2.matcher(valor);
+                }
+                
                 if (mat1.matches()){
                     seguir=Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText(), seguir);
                     if(seguir=false){    
@@ -248,6 +280,7 @@ private void comprobar(String tipo, String valor) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BAgregar;
     private javax.swing.JTextField Direccion;
     private javax.swing.JTextField Nombre;
     private javax.swing.JTextField Telefono;
@@ -259,4 +292,8 @@ private void comprobar(String tipo, String valor) {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
+    public void agregar() {
+        Ejercicio2.agregar(Nombre.getText(),Direccion.getText(),Telefono.getText());
+    }
 }

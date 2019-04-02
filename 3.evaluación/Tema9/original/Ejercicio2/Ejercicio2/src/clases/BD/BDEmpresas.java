@@ -9,6 +9,7 @@ import clases.UML.Empresa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  *
@@ -40,5 +41,19 @@ public class BDEmpresas {
        catch(Exception e){
            return null;
        }
+    }
+
+    public void agregar(Empresa em) {
+        try{
+	    String plantilla = "insert into aconticimientos values (?,?,?);";
+	    PreparedStatement ps = con.prepareStatement(plantilla);
+	    ps.setString(1,em.getNombre());
+            ps.setString(2, em.getDireccion());
+            ps.setString(3, em.getTelefono());
+        }
+        
+        catch(Exception e){
+            
+        }
     }
 }

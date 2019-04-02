@@ -11,8 +11,9 @@ import java.util.ArrayList;
  *
  * @author Asus
  */
-public class Persona {
-    private String dni;
-    private Empresa e;
-    private ArrayList<Evento> listaEventos;
+public class Caso {
+    private Cliente cliente;
+    private ArrayList <Abogado> listaAbogados;
+    private Juicio juicio;
+    private int nuroExp;
 }

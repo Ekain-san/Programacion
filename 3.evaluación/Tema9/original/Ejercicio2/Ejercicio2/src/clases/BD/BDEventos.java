@@ -37,7 +37,6 @@ public class BDEventos {
 
     public void darAlta(Evento ev){
     	try{
-	    Statement sentencia =con.createStatement();
 	    String plantilla = "insert into aconticimientos values (?,?,?,?,?,?);";
 	    PreparedStatement ps = con.prepareStatement(plantilla);
 	    ps.setString(1,ev.getNombre());
@@ -68,8 +67,8 @@ public class BDEventos {
             PreparedStatement ps = con.prepareStatement(plantilla);
             ps.setString(1,tipo);
             ps.setString(2,valor);
-            ps.setString(2,nombreE);
-            
+            ps.setString(3,nombreE);            
+            ResultSet resultado = ps.executeQuery();          
         } 
         catch(Exception e){
                 
@@ -83,7 +82,8 @@ public class BDEventos {
             PreparedStatement ps = con.prepareStatement(plantilla);
             ps.setString(1,tipo);
             ps.setDate(2,fechaD);
-            ps.setString(2,nombreE); 
+            ps.setString(3,nombreE);             
+            ps.executeQuery();
         } 
         
         catch(Exception e){
@@ -93,7 +93,6 @@ public class BDEventos {
     
     public void cambiarT(String nombreE, String tipo, LocalTime hora) {
         try{
-	    Statement sentencia =con.createStatement();
 	   if(tipo.equals("horaI")){
                horaTI = convertidorT(hora);
                tipo="horaInicio";
@@ -101,7 +100,9 @@ public class BDEventos {
                PreparedStatement ps = con.prepareStatement(plantilla);
                ps.setString(1,tipo);
                ps.setTime(2,horaTI);
-               ps.setString(2,nombreE);
+               ps.setString(3,nombreE);            
+               ps.executeQuery();
+
            }
             
            else if(tipo.equals("horaF")){
@@ -111,7 +112,8 @@ public class BDEventos {
                PreparedStatement ps = con.prepareStatement(plantilla);
                ps.setString(1,tipo);
                ps.setTime(2,horaTF);
-               ps.setString(2,nombreE);
+               ps.setString(3,nombreE);
+               ps.executeQuery();
            }
         }
         
@@ -127,6 +129,7 @@ public class BDEventos {
             String plantilla = "delete * from aconticimientos where nombre = ?;";
             PreparedStatement ps = con.prepareStatement(plantilla);
             ps.setString(1, nombre);
+            ps.executeQuery();
         }
 
         catch(Exception e){        
@@ -147,6 +150,7 @@ public class BDEventos {
             ps.setString(1,tipo);
             ps.setString(2,nombre);
             ResultSet resultado = ps.executeQuery();
+            resultado.next();
             dato=resultado.getString(1);
             return dato;
        }
@@ -171,14 +175,14 @@ public class BDEventos {
     public String tomarUbicacion() {
         try{
             String plantilla = "select Initcap(UBICACION) from aconticimientos;";
-            PreparedStatement ps = con.prepareStatement(plantilla);
-            ResultSet resultado = ps.executeQuery();
+            Statement ps = con.createStatement();
+            ResultSet resultado = ps.executeQuery(plantilla);
             if (resultado.next())
                 return resultado.getString(1);
             else
                 return "No hay datos";
         }
-   
+        
         catch(Exception e){
            return null; 
         }
@@ -197,12 +201,9 @@ public class BDEventos {
             ps.setString(1,tipo);
             ps.setString(2,nombre);
             ResultSet resultado = ps.executeQuery();
-             if (resultado.next()){
-                 LocalTime hora= resultado.getTime(1).toInstant() .atZone(ZoneId.systemDefault()) .toLocalTime();
-                return hora;
-             }
-            else
-               return null;
+            resultado.next();
+            LocalTime hora= resultado.getTime(1).toInstant() .atZone(ZoneId.systemDefault()) .toLocalTime();
+            return hora;
         }
         
         catch(Exception e){
@@ -218,12 +219,10 @@ public class BDEventos {
             ps.setString(1,tipo);
             ps.setString(2,nombre);
             ResultSet resultado = ps.executeQuery();
-            if (resultado.next()){
-                 LocalDate dia= resultado.getDate(1).toInstant() .atZone(ZoneId.systemDefault()) .toLocalDate();
-                return dia;
-             }
-            else
-               return null;
+            resultado.next();
+            LocalDate dia= resultado.getDate(1).toInstant() .atZone(ZoneId.systemDefault()) .toLocalDate();
+            return dia;
+             
         }
         
         catch(Exception e){

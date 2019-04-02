@@ -46,9 +46,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Ver = new javax.swing.JButton();
         Inscribir = new javax.swing.JButton();
         Empresa = new javax.swing.JButton();
+        Agregar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        Agregar = new javax.swing.JMenu();
+        DarAlta = new javax.swing.JMenu();
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         Cancelar = new javax.swing.JRadioButtonMenuItem();
         cambiar = new javax.swing.JRadioButtonMenuItem();
@@ -117,7 +118,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jToolBar2.add(Inscribir);
 
-        Empresa.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asus\\Documents\\Tareas\\P\\Programacion\\3.evaluación\\Tema9\\Ejercicio2\\Ejercicio2\\src\\imagenes\\iconfinder_9_2247720.png")); // NOI18N
         Empresa.setFocusable(false);
         Empresa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Empresa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -128,18 +128,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jToolBar2.add(Empresa);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_R_Time_Lord_Seal_87837.png"))); // NOI18N
-
-        Agregar.setText("Eventos");
+        Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_9_2247720.png"))); // NOI18N
+        Agregar.setFocusable(false);
+        Agregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Agregar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AgregarActionPerformed(evt);
             }
         });
+        jToolBar2.add(Agregar);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_R_Time_Lord_Seal_87837.png"))); // NOI18N
+
+        DarAlta.setText("Eventos");
+        DarAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DarAltaActionPerformed(evt);
+            }
+        });
 
         jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText("Agregar");
-        Agregar.add(jRadioButtonMenuItem1);
+        jRadioButtonMenuItem1.setText("Dar alta");
+        DarAlta.add(jRadioButtonMenuItem1);
 
         Cancelar.setSelected(true);
         Cancelar.setText("Cancelar");
@@ -148,7 +159,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 CancelarActionPerformed(evt);
             }
         });
-        Agregar.add(Cancelar);
+        DarAlta.add(Cancelar);
 
         cambiar.setSelected(true);
         cambiar.setText("Hacer cambios");
@@ -157,9 +168,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 cambiarActionPerformed(evt);
             }
         });
-        Agregar.add(cambiar);
+        DarAlta.add(cambiar);
 
-        jMenuBar1.add(Agregar);
+        jMenuBar1.add(DarAlta);
 
         jMenu2.setText("Salir");
         jMenu2.addActionListener(new java.awt.event.ActionListener() {
@@ -206,17 +217,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        Ejercicio2.pantallaAlta();
-    }//GEN-LAST:event_AgregarActionPerformed
+    private String ventana;
+    private void DarAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DarAltaActionPerformed
+        ventana="alta";
+        Ejercicio2.cambiarPantalla(ventana);
+    }//GEN-LAST:event_DarAltaActionPerformed
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
-        Ejercicio2.pantallaCancelar();
+        ventana="cancelar";
+        Ejercicio2.cambiarPantalla(ventana);
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void cambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarActionPerformed
-        Ejercicio2.pantallaCambios();
+        ventana="cambiar";
+        Ejercicio2.cambiarPantalla(ventana);
     }//GEN-LAST:event_cambiarActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
@@ -224,16 +238,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void VerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerActionPerformed
-        Ejercicio2.pantallaVer();
+        ventana="ver";
+        Ejercicio2.cambiarPantalla(ventana);
     }//GEN-LAST:event_VerActionPerformed
 
     private void InscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InscribirActionPerformed
-        Ejercicio2.pantallaInscribir();
+        ventana="inscribir";
+        Ejercicio2.cambiarPantalla(ventana);
     }//GEN-LAST:event_InscribirActionPerformed
 
     private void EmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpresaActionPerformed
-        Ejercicio2.pantallaAgregarEmpresa();
+       
     }//GEN-LAST:event_EmpresaActionPerformed
+
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
+     ventana="agregar";
+        Ejercicio2.cambiarPantalla(ventana);
+    }//GEN-LAST:event_AgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,8 +292,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu Agregar;
+    private javax.swing.JButton Agregar;
     private javax.swing.JRadioButtonMenuItem Cancelar;
+    private javax.swing.JMenu DarAlta;
     private javax.swing.JButton Empresa;
     private javax.swing.JButton Inscribir;
     private javax.swing.JButton Ver;

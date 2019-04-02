@@ -5,14 +5,12 @@
  */
 package clases.UML;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Asus
  */
-public class Persona {
-    private String dni;
-    private Empresa e;
-    private ArrayList<Evento> listaEventos;
+class Abogado extends Persona {
+    public Abogado(String dni, String nombre, String apellido, String direccion) {
+        super(dni, nombre, apellido, direccion);
+    }   
 }

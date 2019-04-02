@@ -40,7 +40,6 @@ public class GestorEventos extends DefaultHandler {
                 tipo = TipoTendencia.TEMPERATURA;
                 break;
         }
-
         builder.setLength(0);
     }
 
@@ -69,11 +68,9 @@ public class GestorEventos extends DefaultHandler {
                     break;
             }
         }
-
     }
 
     public List<Tendencia> getTendencias() {
         return tendencias;
     }
-
 }

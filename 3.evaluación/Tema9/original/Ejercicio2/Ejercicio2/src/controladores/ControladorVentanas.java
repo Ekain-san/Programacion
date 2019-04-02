@@ -42,41 +42,17 @@ public class ControladorVentanas {
     public static void iniciarPrograma() {
         vp.setVisible(true);
     }
-    
-    public static void pantallaAlta(){
+       
+    public static void cambiarPantalla(String ventana){
         vp.setVisible(false);
-        Ejercicio2.conectar();
-        va.setVisible(true);
-    }
-    
-    public static void pantallaCancelar(){
-        vp.setVisible(false);
-        Ejercicio2.conectar();
-        vc.setVisible(true);
-    }
-    
-    public static void pantallaCambios(){
-        vp.setVisible(false);
-        Ejercicio2.conectar();
-        vca.setVisible(true);
-    }
-    
-     public static void pantallaInscribir(){
-        vp.setVisible(false);
-        Ejercicio2.conectar();
-        vi.setVisible(true);
-    }
-     
-    public static void pantallaAgregarEmpresa(){
-        vp.setVisible(false);
-        Ejercicio2.conectar();
-        ve.setVisible(true);
-    }
-    
-        public static void pantallaVer() {
-        vp.setVisible(false);
-        Ejercicio2.conectar();
-        vv.setVisible(true);
+        switch (ventana){
+            case "alta":va.setVisible(true);
+            case "cancelar":vc.setVisible(true);
+            case "cambiar": vca.setVisible(true);
+            case "agregar":ve.setVisible(true);
+            case "inscribir":vi.setVisible(true);
+            case "ver":vv.setVisible(true);
+        }
     }
     
     public static void salir(){
@@ -87,8 +63,12 @@ public class ControladorVentanas {
         vc.cancelar();
     }
 
+    public static void darAlta(){
+        va.darAlta();
+    }
+    
     public static void agregar() {
-        va.agregar();
+        ve.agregar();
     }
     
     public static void volverAPrincipal(String ventana) {
@@ -135,5 +115,32 @@ public class ControladorVentanas {
                 break;
         }
         vv.setVisible(true);
+    }
+
+    public static void vaciar(String ventana) {
+        switch (ventana){
+            case "agregar":ve.removeAll();
+                           ve.revalidate();
+                           ve.repaint();
+                           break;
+                           
+            case "alta":va.removeAll();
+                        va.revalidate();
+                        va.repaint();
+                        break;
+                        
+            case "inscribir":ve.removeAll();
+                             ve.revalidate();
+                             ve.repaint();
+                             break;
+        }
+    }
+
+    public static void inscribir() {
+        vi.inscribir();
+    }
+
+    public static void añadir() {
+        vi.añadir();
     }
 }

@@ -121,5 +121,10 @@ public class ControladorClases {
         }
         return valor;
     }
+
+    public static void agregar(String nombre, String direccion, String telefono) {
+        em=new Empresa(nombre, direccion, telefono);
+        bdem.agregar(em);
+    }
 }
  

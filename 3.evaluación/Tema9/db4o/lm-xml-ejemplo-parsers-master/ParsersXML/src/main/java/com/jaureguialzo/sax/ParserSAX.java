@@ -41,6 +41,5 @@ public class ParserSAX {
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
-
     }
 }

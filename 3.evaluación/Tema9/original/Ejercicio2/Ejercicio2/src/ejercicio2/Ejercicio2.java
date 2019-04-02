@@ -42,28 +42,8 @@ public class Ejercicio2 {
         ControladorVentanas.iniciarPrograma();
     }
     
-    public static void pantallaAlta(){
-        ControladorVentanas.pantallaAlta();
-    }
-    
-    public static void pantallaCancelar(){
-        ControladorVentanas.pantallaCancelar();
-    }
-    
-    public static void pantallaCambios(){
-        ControladorVentanas.pantallaCambios();
-    }
-    
-     public static void pantallaInscribir(){
-        ControladorVentanas.pantallaInscribir();
-    }
-     
-    public static void pantallaAgregarEmpresa(){
-        ControladorVentanas.pantallaAgregarEmpresa();
-    }
-    
-    public static void pantallaVer() {
-        ControladorVentanas.pantallaVer();
+    public static void cambiarPantalla(String ventana){
+        ControladorVentanas.cambiarPantalla(ventana);
     }
     
     public static void salir(){
@@ -162,5 +142,33 @@ public class Ejercicio2 {
     public static LocalDate sacarValorF(String tipo, String nombre) {
         LocalDate dia=ControladorClases.sacarDia(nombre, tipo);
         return dia;
+    }
+
+    public static void cancelar() {
+        ControladorVentanas.cancelar();
+    }
+
+    public static void agregar() {
+        ControladorVentanas.agregar();
+    }
+
+    public static void darAlta() {
+        ControladorVentanas.darAlta();
+    }
+
+    public static void inscribir() {
+        ControladorVentanas.inscribir();
+    }
+
+    public static void vaciar(String ventana) {
+        ControladorVentanas.vaciar(ventana);
+    }
+
+    public static void agregar(String nombre, String direccion, String telefono) {
+        ControladorClases.agregar(nombre, direccion, telefono);
+    }
+
+    public static void añadir() {
+        ControladorVentanas.añadir();
     }
 }

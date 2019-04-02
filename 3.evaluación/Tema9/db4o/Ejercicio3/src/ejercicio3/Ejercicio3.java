@@ -3,16 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clases.UML;
-
-import java.util.ArrayList;
+package ejercicio3;
 
 /**
  *
  * @author Asus
  */
-public class Persona {
-    private String dni;
-    private Empresa e;
-    private ArrayList<Evento> listaEventos;
+public class Ejercicio3 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+    }
+    
 }

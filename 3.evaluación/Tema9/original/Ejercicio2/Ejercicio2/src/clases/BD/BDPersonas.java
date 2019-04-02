@@ -5,6 +5,7 @@
  */
 package clases.BD;
 
+import clases.UML.Empresa;
 import clases.UML.Persona;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -41,6 +42,10 @@ private Connection con;
        catch(Exception e){
            return null;
        }
+    }
+
+    public void inscribir(Persona p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

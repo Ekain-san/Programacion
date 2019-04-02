@@ -5,6 +5,7 @@
  */
 package controladores;
 
+import ejercicio2.Ejercicio2;
 import static ejercicio2.Ejercicio2.volverAPrincipal;
 import javax.swing.JOptionPane;
 
@@ -16,20 +17,22 @@ public class VerificadorDeAccion {
     private static String otro;
     private static String estarSeguro;
     public static void cercionar(String ventana) {
-        if(estarSeguro.equals("sí")){
-            if(ventana.equals("cancelar"))
-                ControladorVentanas.cancelar();
-                if(ventana.equals("agregar"))
-                ControladorVentanas.agregar();
-            otro=seguir();
+        estarSeguro=seguridad();
+        if (estarSeguro.equals("sí")){
+            switch (ventana){
+                case "cancelar":Ejercicio2.cancelar();
+                case "alta": Ejercicio2.darAlta();
+                case "agregar":Ejercicio2.agregar();
+                case "inscribir":Ejercicio2.inscribir();
+                case "añadir":Ejercicio2.añadir();
+            }
         }
-        
-        else{
-            volverAPrincipal(ventana);
-        }
-        
-        if(otro.equals("no")){
-            volverAPrincipal(ventana);
+        if (!ventana.equals("añadir")){
+        otro=seguir();
+            switch(otro){
+                case "sí": Ejercicio2.vaciar(ventana);
+                case "no": volverAPrincipal(ventana);
+            }
         }
     }
     
@@ -37,12 +40,13 @@ public class VerificadorDeAccion {
         estarSeguro=JOptionPane.showInputDialog("¿Esta seguro? N (no), s (sí)").toLowerCase();
         switch (estarSeguro){
             case "s": estarSeguro="sí";
-                      break;
+                break;
+                
             case "n": estarSeguro="no";
-                      break;
+                break;
                       
             default: estarSeguro="no";
-                      break;
+                break;
         }; 
         return estarSeguro;
     }
@@ -51,11 +55,11 @@ public class VerificadorDeAccion {
         otro=JOptionPane.showInputDialog("¿Desea hacer más? N (no), s (sí)").toLowerCase();
         switch (otro){
             case "s": otro="sí";
-                      break;
+                break;
             case "n": otro="no";
-                      break;
+                break;
             default: otro="no";
-                      break;
+                break;
         }; 
         return otro;
     }
