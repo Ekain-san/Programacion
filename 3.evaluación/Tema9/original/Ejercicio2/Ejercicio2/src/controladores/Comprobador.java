@@ -37,15 +37,19 @@ public class Comprobador {
         String dato;
         dato= Ejercicio2.sacarDato(tipo, nombre);
         
-        if(dato.equals(valor) && ventana.equals("alta")){
+        if(dato.equals(valor)){
             switch(ventana){
                 case "alta": JOptionPane.showMessageDialog(null, "Ya exista este acontecimiento");
                     return seguir=false;
 
-                case "inscribir": JOptionPane.showMessageDialog(null, "Ya exista este acontecimiento");
-                    return seguir=false;
+                case "inscribir": switch(tipo){
+                    case "nombre":return seguir=true;
+                    case "dni":
+                }
                     
-                case "agregar": JOptionPane.showMessageDialog(null, "Ya exista este acontecimiento");
+                    
+                    
+                case "agregar": JOptionPane.showMessageDialog(null, "Ya exista este Empresa");
                     return seguir=false;
                     
                 default: 

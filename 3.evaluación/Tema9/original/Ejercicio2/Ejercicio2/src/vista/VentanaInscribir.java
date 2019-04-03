@@ -6,6 +6,9 @@
 package vista;
 
 import ejercicio2.Ejercicio2;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +21,8 @@ public class VentanaInscribir extends javax.swing.JFrame {
      */
     public VentanaInscribir() {
         initComponents();
+        SAñadir.setVisible(false);
+        SInscribir.setVisible(false);
     }
 
     /**
@@ -38,16 +43,17 @@ public class VentanaInscribir extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         Hora = new com.github.lgooddatepicker.components.TimePicker();
         NombreEv = new javax.swing.JComboBox<>();
+        BInscribir = new javax.swing.JButton();
         Nombre = new javax.swing.JTextField();
         SAñadir = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel1.setText("Garacorra San France SA");
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel3.setText("Incribase ahora");
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
         jLabel2.setText("Fecha");
 
@@ -56,6 +62,13 @@ public class VentanaInscribir extends javax.swing.JFrame {
         jLabel5.setText("Hora");
 
         NombreEv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        BInscribir.setText("Inscribir");
+        BInscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BInscribirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout SInscribirLayout = new javax.swing.GroupLayout(SInscribir);
         SInscribir.setLayout(SInscribirLayout);
@@ -73,6 +86,10 @@ public class VentanaInscribir extends javax.swing.JFrame {
                     .addComponent(Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Hora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(SInscribirLayout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(BInscribir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         SInscribirLayout.setVerticalGroup(
             SInscribirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,6 +105,8 @@ public class VentanaInscribir extends javax.swing.JFrame {
                 .addGroup(SInscribirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(NombreEv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(BInscribir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -128,10 +147,8 @@ public class VentanaInscribir extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(Nombre, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(SAñadir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(12, 12, 12))
-                            .addComponent(SInscribir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(SInscribir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SAñadir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -145,15 +162,18 @@ public class VentanaInscribir extends javax.swing.JFrame {
                 .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SInscribir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private boolean seguir;
+    private boolean encontrar;
     private String ventana="inscribir";
+    private Pattern pat1;
+    private Matcher mat1;
     private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NombreActionPerformed
@@ -162,6 +182,10 @@ public class VentanaInscribir extends javax.swing.JFrame {
         String tipo="nombre";
         comprobar(tipo, Nombre.getText());
     }//GEN-LAST:event_NombreFocusLost
+
+    private void BInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BInscribirActionPerformed
+        Ejercicio2.cercionar(ventana);
+    }//GEN-LAST:event_BInscribirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,6 +228,7 @@ public class VentanaInscribir extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BInscribir;
     private com.github.lgooddatepicker.components.DatePicker Fecha;
     private com.github.lgooddatepicker.components.TimePicker Hora;
     private javax.swing.JTextField Nombre;
@@ -222,6 +247,44 @@ public class VentanaInscribir extends javax.swing.JFrame {
     }
 
     private void comprobar(String tipo, String valor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        do{
+            if(valor.isEmpty()){
+                if(tipo.equals("nombre")){
+                    valor=JOptionPane.showInputDialog("Tiene que rellenar el apartado del nombre del acontecimiento cuyos datos desea cambiar");
+                    seguir=false;
+                }
+            
+                else{
+                    valor=JOptionPane.showInputDialog("Tiene que rellenar el apartado "+tipo);
+                    seguir=false;
+                }
+            }
+       
+       
+            else{
+                mat1=pat1.matcher(valor);
+                if (mat1.matches()){
+                    switch(tipo){
+                        case "nombre":encontrar=Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText(), seguir);
+                            seguir=true;
+                            if(encontrar==false)
+                                SAñadir.setVisible(true);
+                            else
+                                SInscribir.setVisible(true);
+                            break;
+                        
+                        default:seguir=Ejercicio2.comprobar(tipo, ventana, valor, Nombre.getText(), seguir);
+                        if(seguir=false){    
+                            valor=JOptionPane.showInputDialog("Intentalo de nuevo");                
+                        }
+                    }
+                }
+           
+                else{
+                    valor=JOptionPane.showInputDialog("Ha introducido un valor incorrecto o demasiado largo, intentelo de nuevo");
+                    seguir=false;
+                }
+            }
+        }while(seguir == false);
     }
 }

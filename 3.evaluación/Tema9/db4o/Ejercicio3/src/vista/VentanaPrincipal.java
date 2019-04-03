@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clases.UML;
-
-import java.util.ArrayList;
+package vista;
 
 /**
  *
  * @author Asus
  */
-public class Persona {
-    private String dni;
-    private int telefono;
-    private Empresa e;
-    private ArrayList<Evento> listaEventos;
+public class VentanaPrincipal {
+    
 }
