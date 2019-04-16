@@ -15,13 +15,17 @@ public class Caso {
     private Cliente cliente;
     private ArrayList <Abogado> listaAbogados;
     private Juicio juicio;
-    private int nuroExp;
+    private int numeroExp;
 
-    public Caso(Cliente cliente, ArrayList<Abogado> listaAbogados, Juicio juicio, int nuroExp) {
+    public Caso(Cliente cliente, ArrayList<Abogado> listaAbogados, Juicio juicio, int numeroExp) {
         this.cliente = cliente;
         this.listaAbogados = listaAbogados;
         this.juicio = juicio;
-        this.nuroExp = nuroExp;
+        this.numeroExp = numeroExp;
+    }
+
+    public Caso() {
+        
     }
 
     public Cliente getCliente() {
@@ -48,11 +52,11 @@ public class Caso {
         this.juicio = juicio;
     }
 
-    public int getNuroExp() {
-        return nuroExp;
+    public int getNumeroExp() {
+        return numeroExp;
     }
 
-    public void setNuroExp(int nuroExp) {
-        this.nuroExp = nuroExp;
+    public void setNumeroExp(int nuroExp) {
+        this.numeroExp = numeroExp;
     }
 }

@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clases.UML;
+package clases.BD;
+
+import java.sql.Connection;
 
 /**
  *
  * @author Asus
  */
-public class Abogado extends Persona {
-    public Abogado(String dni, String nombre, String apellido, String direccion) {
-        super(dni, nombre, apellido, direccion);
-    }   
+public class BDJuicios {
+    private Connection con;
+    public BDJuicios(Connection con) {
+        this.con=con;
+    }
 }

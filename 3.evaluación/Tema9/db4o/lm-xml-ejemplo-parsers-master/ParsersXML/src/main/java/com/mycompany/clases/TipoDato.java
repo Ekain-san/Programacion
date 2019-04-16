@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clases.UML;
+package com.mycompany.clases;
 
 /**
  *
  * @author Asus
  */
-public class Abogado extends Persona {
-    public Abogado(String dni, String nombre, String apellido, String direccion) {
-        super(dni, nombre, apellido, direccion);
-    }   
+public enum TipoDato {
+    ID, TIPO, NOMBRE, MUNICIPIO, WEB, CAPACIDAD
 }

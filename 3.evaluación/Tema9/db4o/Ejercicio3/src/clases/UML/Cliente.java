@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Asus
  */
-class Cliente extends Persona {
+public class Cliente extends Persona {
     private int telefono;
     private ArrayList <Caso> listaCasos;
 

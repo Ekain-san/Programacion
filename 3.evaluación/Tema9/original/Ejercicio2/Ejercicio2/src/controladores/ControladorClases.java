@@ -49,7 +49,6 @@ public class ControladorClases {
         bda = new BDAsistentes(con);
         bdp = new BDPersonas(con);
         bd.desconectar();
-        Ejercicio2.iniciarPrograma();
     }
 
     public static void cancelar(String nombre){

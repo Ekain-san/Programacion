@@ -12,12 +12,9 @@ package ejercicio2;
  */
 
 import controladores.*;
-import clases.UML.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.sql.*;
-import java.time.ZoneId;
-import javax.swing.JOptionPane;
 public class Ejercicio2 {
 
     /**
@@ -31,6 +28,7 @@ public class Ejercicio2 {
        
     public static void main(String[] args) {
         ControladorClases.accederClaseslBD();
+        ControladorVentanas.crear();
         ControladorVentanas.iniciarPrograma();
     }
 

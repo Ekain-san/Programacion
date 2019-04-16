@@ -174,7 +174,7 @@ public class BDEventos {
 
     public String tomarUbicacion() {
         try{
-            String plantilla = "select Initcap(UBICACION) from aconticimientos;";
+             String plantilla = "select Initcap(UBICACION) from aconticimientos;";
             Statement ps = con.createStatement();
             ResultSet resultado = ps.executeQuery(plantilla);
             if (resultado.next())

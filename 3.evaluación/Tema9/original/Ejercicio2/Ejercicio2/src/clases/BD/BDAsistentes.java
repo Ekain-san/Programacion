@@ -6,6 +6,8 @@
 package clases.BD;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  *
@@ -17,4 +19,18 @@ private Connection con;
         this.con=con;
     }
     
+    public int sacarAsistentes(){
+        int asistentes;
+        try{
+            String plantilla = "select COUNT(*) FROM PERSONASACONTECIMIENTOS GROUP BY NOMBREACONTECIMIENTOS;";       
+            Statement ps = con.createStatement();        
+            ResultSet resultado = ps.executeQuery(plantilla);
+            resultado.next();
+            asistentes = resultado.getInt(1);
+        }
+        catch(Exception e){
+            asistentes = 01;
+        }
+        return asistentes;
+    }
 }

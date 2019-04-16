@@ -9,11 +9,15 @@ package clases.UML;
  *
  * @author Asus
  */
-class Persona {
+public class Persona {
     private String dni;
     private String nombre;
     private String apellido;
     private String direccion;
+
+    public Persona() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     public String getDni() {
         return dni;

@@ -42,7 +42,7 @@ public class ParserDOM {
             Document doc = dBuilder.parse(datos);
             doc.getDocumentElement().normalize();
 
-            System.out.println("Elemento raÃ­z: " + doc.getDocumentElement().getNodeName());
+            System.out.println("Elemento raíz: " + doc.getDocumentElement().getNodeName());
 
             NodeList nodos = doc.getElementsByTagName("tendecyDay");
 

@@ -45,7 +45,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jToolBar2 = new javax.swing.JToolBar();
         Ver = new javax.swing.JButton();
         Inscribir = new javax.swing.JButton();
-        Empresa = new javax.swing.JButton();
         Agregar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -117,16 +116,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         jToolBar2.add(Inscribir);
-
-        Empresa.setFocusable(false);
-        Empresa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Empresa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Empresa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmpresaActionPerformed(evt);
-            }
-        });
-        jToolBar2.add(Empresa);
 
         Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_9_2247720.png"))); // NOI18N
         Agregar.setFocusable(false);
@@ -247,10 +236,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Ejercicio2.cambiarPantalla(ventana);
     }//GEN-LAST:event_InscribirActionPerformed
 
-    private void EmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpresaActionPerformed
-       
-    }//GEN-LAST:event_EmpresaActionPerformed
-
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
      ventana="agregar";
         Ejercicio2.cambiarPantalla(ventana);
@@ -295,7 +280,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton Agregar;
     private javax.swing.JRadioButtonMenuItem Cancelar;
     private javax.swing.JMenu DarAlta;
-    private javax.swing.JButton Empresa;
     private javax.swing.JButton Inscribir;
     private javax.swing.JButton Ver;
     private javax.swing.JRadioButtonMenuItem cambiar;

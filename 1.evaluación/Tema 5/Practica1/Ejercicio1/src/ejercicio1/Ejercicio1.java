@@ -11,26 +11,31 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Asus
+ * @author Ekain Armendaritz
+ * @version Netbeans IDE 8.2 10/04/2019
  */
 public class Ejercicio1 {
-
-    /**
-     * @param args the command line arguments
-     */
+/**
+ * Se trata de un programa que hace diversas acciones que influyen en una lista de numeros
+ * @param args 
+ */
     public static void main(String[] args)
     {
-        // TODO code application logic here
+        // 
         int opcion=0;
         int menu=0;
         boolean fin=false;
         ArrayList<Float>numeros=new ArrayList();
                 
         numeros=calculador_de_lista(numeros);
-       menu=opciones(menu, fin);
+        menu=opciones(menu, fin);
         numeros=menu_opciones(numeros, fin, menu);
     }
-    
+    /**
+     * Crea la lista y hace que el usuario introduzca los primeros numeros
+     * @param numeros
+     * @return numeros
+     */
     public static ArrayList<Float> calculador_de_lista (ArrayList<Float>numeros)
     {
         int seguir=1;
@@ -41,6 +46,13 @@ public class Ejercicio1 {
         }while(seguir==0);
         return numeros;
     }
+    
+    /**
+     * Hace la función de menu de opciones 
+     * @param menu
+     * @param fin
+     * @return menu
+     */
     
     public static int opciones (int menu, boolean fin)
     {
@@ -59,6 +71,15 @@ public class Ejercicio1 {
         }
         return menu;  
     }
+    
+    /**
+     * Hace que se ejecuten una de las proximas funciones, dependiendo de la opción seleccionada
+     * Si se le da a salir, deja de ejecutarse y devuelve la lista al main
+     * @param numeros
+     * @param fin
+     * @param menu
+     * @return numeros
+     */
     public static ArrayList<Float>menu_opciones ( ArrayList<Float>numeros, boolean fin, int menu)
     {
         if(fin==false)
@@ -90,12 +111,22 @@ public class Ejercicio1 {
         return numeros;
     }
     
+    /**
+     * Calcula el mayor y el menor de los numeros de la lista, y los muestra
+     * @param numeros 
+     */
+    
     public static void calculador_max_min(ArrayList<Float>numeros)
     {
         Collections.sort(numeros);
         JOptionPane.showMessageDialog(null,"El mínimo es "+numeros.get(0));
         JOptionPane.showMessageDialog(null,"El máximo es "+numeros.get(numeros.size()-1));
     }
+    
+    /**
+     * Busca un numero establecido por el usuario en la lista de numeros y le comunica si esta o no al usuario
+     * @param numeros 
+     */
     
     public static void buscador_de_numero(ArrayList<Float>numeros)
     {
@@ -115,22 +146,41 @@ public class Ejercicio1 {
             }
     }
     
+    /**
+     * Borra el numero de la lista introducido por el usuario
+     * @param numeros 
+     */
+    
     public static void borrador_numero(ArrayList<Float>numeros)
     {
-        float numero=Float.parseFloat("Inttroduce el numero que quiere borrar");
+        float numero=Float.parseFloat("Introduce el numero que quiere borrar");
         numeros.remove(numero);
     }
-    
+   /**
+    * Convierte la lista de numeros, que se encuentra en formato ArrayList, en Array
+    * @param numeros 
+    */ 
     public static void arrayzador(ArrayList<Float>numeros)
     {
         Double[]lista;
         lista=numeros.toArray(new Double[numeros.size()]);
     }
     
+    /**
+     * Muestra la lista de numeros
+     * @param numeros 
+     */
+    
     public static void mostrador(ArrayList<Float>numeros)
     {
         JOptionPane.showMessageDialog(null, numeros);
     }
+    
+    /**
+     * Añade al final de la lista un numero
+     * @param numeros
+     * @return numeros
+     */
     
     public static ArrayList<Float> añadir_final(ArrayList<Float>numeros)
     {
@@ -139,13 +189,25 @@ public class Ejercicio1 {
         return numeros;
     }
     
+    /**
+     * Introduce un numero a la lista de una posición establecida por el usuario
+     * @param numeros
+     * @return numeros
+     */
+    
     public static ArrayList<Float> añadir_en_posicion(ArrayList<Float>numeros)
     {
         int posicion=Pedir_numero();
-        float numero=Float.parseFloat("Inttroduce el numero que quiere añadir");
+        float numero=Float.parseFloat("Introduce el numero que quiere añadir");
         numeros.add(posicion,numero);
         return numeros;
     }
+    
+    /**
+     * Borra un numero que se encuentra una posición de la lista establecida por el usuario
+     * @param numeros
+     * @return numeros
+     */
     
     public static ArrayList<Float> borrar_en_posicion(ArrayList<Float>numeros)
     {
@@ -153,6 +215,11 @@ public class Ejercicio1 {
         numeros.remove(posicion);
         return numeros;
     }
+    
+    /**
+     * Calcula el total y luego la media, de los numeros que se encuentran en la lista
+     * @param numeros 
+     */
     
     public static void sumar_y_media(ArrayList<Float>numeros)
     {
@@ -166,6 +233,11 @@ public class Ejercicio1 {
         JOptionPane.showMessageDialog(null, "el total es "+suma);
         JOptionPane.showMessageDialog(null, "la media es "+media);
     }
+    
+    /**
+     * Pide la posición del numero que el usuario quiere añadir
+     * @return posicion
+     */
     
     public static int Pedir_numero ()
     {

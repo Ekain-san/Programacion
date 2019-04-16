@@ -30,7 +30,7 @@ public class GeneradorDOM {
         // Rellenar la lista con datos de prueba
         cargarDatos();
 
-        // Construir un documento DOM vacÃ­o
+        // Construir un documento DOM vacío
         crearDocumento();
     }
 

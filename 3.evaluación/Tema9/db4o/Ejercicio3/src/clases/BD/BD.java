@@ -13,21 +13,19 @@ import java.sql.DriverManager;
  * @author Asus
  */
 public class BD {
-private Connection con;
+    private Connection con;
     
-    public Connection conectar()
-    {
+    public Connection conectar(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             
-            String url="jdbc:mysql://localhost:3306/"+"ejercicio2";
+            String url="jdbc:mysql://localhost:3306/"+"ejercicio3";
             String usuario = "root";
             String pass = "usbw";
             con = DriverManager.getConnection (url,usuario,pass);
             return con;
         }
-        catch(Exception e)
-        {
+        catch(Exception e){
             return null;
         }
     }
@@ -38,5 +36,5 @@ private Connection con;
         con.close();
         }
         catch(Exception e){}
-    }  
+    }
 }

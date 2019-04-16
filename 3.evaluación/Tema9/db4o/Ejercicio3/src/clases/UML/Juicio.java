@@ -11,7 +11,7 @@ import java.time.LocalDate;
  *
  * @author Asus
  */
-class Juicio {
+ public class Juicio {
     LocalDate fechaInicio;
     LocalDate fechaFin;
     String estado;

@@ -25,7 +25,7 @@ public class ControladorVentanas {
    private static VentanaVEvento vve;
    private static VentanaVPersona vvp;
    
-   private static void crear(){
+   public static void crear(){
        vp= new VentanaPrincipal();
        va= new VentanaAlta();
        vc=new VentanaCancelar();
@@ -47,11 +47,17 @@ public class ControladorVentanas {
         vp.setVisible(false);
         switch (ventana){
             case "alta":va.setVisible(true);
+                break;
             case "cancelar":vc.setVisible(true);
+                break;
             case "cambiar": vca.setVisible(true);
+                break;
             case "agregar":ve.setVisible(true);
+                break;
             case "inscribir":vi.setVisible(true);
+                break;
             case "ver":vv.setVisible(true);
+                break;
         }
     }
     
