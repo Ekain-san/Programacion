@@ -25,12 +25,12 @@ public class Ejercicio1 {
     private static String listaString;
     
     public static void main(String[] args) {
-        formarlista();
+        formarLista();
         seleccionarOpcion();
         EjecutarOpcion();
     }
 
-    private static void formarlista() {
+    private static void formarLista() {
         for(x=0; x<lista.length;x++){
             lista[x]=Integer.parseInt(JOptionPane.showInputDialog("Introduzca un numero"));
         }
@@ -76,13 +76,13 @@ public class Ejercicio1 {
     private static void modificador() {
         x = Integer.parseInt(JOptionPane.showInputDialog("Introduzca la posición del numero que desea modificar"));
         y = Integer.parseInt(JOptionPane.showInputDialog("Introduzca el nuevo valor del numero que desea modificar"));
-        lista[x]=y;
+        lista[x-1]=y;
         JOptionPane.showMessageDialog(null,"Numero cambiado");
     }
 
     private static void eliminador() {
         x = Integer.parseInt(JOptionPane.showInputDialog("Introduzca la posición del numero que desea eliminar"));
-        lista[x]=-1;
+        lista[x-1]=-1;
         JOptionPane.showMessageDialog(null,"Numero borrado");
     }
 
