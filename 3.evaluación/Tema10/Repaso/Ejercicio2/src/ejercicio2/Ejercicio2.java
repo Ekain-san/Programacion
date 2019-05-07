@@ -22,7 +22,7 @@ public class Ejercicio2 {
     private static int x;
     private static Pattern pat;
     private static Matcher mat;
-    private static String listaString;
+    private static String listaString= " ";
     
     public static void main(String[] args) {
         formador();
@@ -40,6 +40,10 @@ public class Ejercicio2 {
         for(x=0; x<lista.length;x++){
             lista[x] = (int) Math.round(Math.random()*300);
         }
+        for (x=0; x<lista.length;x++){
+                listaString = listaString + " " + lista[x];
+        }
+        JOptionPane.showMessageDialog(null, listaString);
     }
 
     private static void establecedor() {
@@ -53,8 +57,8 @@ public class Ejercicio2 {
             if (mat.matches()){
                 listaString = listaString + " " + lista[x];
             }
-        JOptionPane.showMessageDialog(null, listaString);
         }
+        JOptionPane.showMessageDialog(null, listaString);
     }
     
 }

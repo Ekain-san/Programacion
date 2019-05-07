@@ -19,7 +19,7 @@ public class Ejercicio3 {
      */
     private static String [] lista = new String [28];
     private static int x;
-    private static int contador;
+    private static int contador=0;
     private static String texto;
     
     public static void main(String[] args) {
@@ -58,17 +58,25 @@ public class Ejercicio3 {
     }
 
     private static void escritor() {
-        x = Integer.parseInt("Introduzca un numero del 1 al 28 para escribir algo. "
-                           + "\n Siendo a el numero 1, 27 el z y 28 un espacio") - 1;
+        x = Integer.parseInt(JOptionPane.showInputDialog("Introduzca un numero del 1 al 28 para escribir algo. "
+                                                       + "\n Siendo a el numero 1, 27 el z y 28 un espacio"));
+        x = x - 1;
         while (x>-1 && x<lista.length){
-            if (contador==0)
-                texto = texto + lista[x];
-            else
-                texto = texto + lista[x].toLowerCase();
+            switch (x){
+                case 27: texto = texto + lista[x];
+                    break;
+                    
+                default: if (contador==0)
+                            texto = texto + lista[x];
+                         else
+                            texto = texto + lista[x].toLowerCase();
+                    break;
+            }
             
-            x = Integer.parseInt("Introduzca otro numero entre el 1 y el 28 si desea seguir escrbiento")-1;
+            x = Integer.parseInt(JOptionPane.showInputDialog("Introduzca otro numero entre el 1 y el 28 si desea seguir escrbiento"));
+            x=x-1;
             contador++;
         }
-        JOptionPane.showInputDialog(null, "Ha escrito:"+texto);
+        JOptionPane.showMessageDialog(null, "Ha escrito:"+texto);
     }
 }

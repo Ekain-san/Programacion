@@ -27,7 +27,7 @@ public class Ejercicio1 {
     public static void main(String[] args) {
         formarLista();
         seleccionarOpcion();
-        EjecutarOpcion();
+        ejecutarOpcion();
     }
 
     private static void formarLista() {
@@ -46,7 +46,7 @@ public class Ejercicio1 {
                                                             + "\n 6. Ordenar el contenido de mayor a menor"));
     }
 
-    private static void EjecutarOpcion() {
+    private static void ejecutarOpcion() {
         switch(opcion){
             case 1: mostrador();
                 break;
