@@ -5,6 +5,7 @@
  */
 package ejercicio5;
 
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,8 +18,13 @@ public class Ejercicio5 {
      * @param args the command line arguments
      */
     private static int opcion;
+    private static int x;
+    private static int y;
+    private static int contador=0;
+    private static int[] lista;
     
     public static void main(String[] args) {
+        crearLista();
         seleccionarOpcion();
         ejecutarOpcion();
     }
@@ -29,11 +35,11 @@ public class Ejercicio5 {
 
     private static void ejecutarOpcion() {
         switch(opcion){
-            case 1: adivinar();
+            case 1: ordenarNumeros();
                 break;
-            case 2: 
+            case 2: rellenar();
                 break;
-            case 3: 
+            case 3: buscaMinas();
                 break;
             case 4: 
                 break;
@@ -42,8 +48,22 @@ public class Ejercicio5 {
         }
     }
 
-    private static int adivinar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static void ordenarNumeros() {
+       JOptionPane.showMessageDialog(null, "Seleccionar el minimo");
+       Arrays.sort(lista);
+       JOptionPane.showMessageDialog(null, "El minimo es "+lista[1]);
     }
-    
+
+    private static void rellenar() {
+        
+    }
+
+    private static void buscaMinas() {
+        
+    }
+
+    private static void crearLista() {
+        x= Integer.parseInt(JOptionPane.showInputDialog("Introduzca la cantidad de numeros que desea que tenga la lista"));
+        lista = new int [x];    
+    }
 }

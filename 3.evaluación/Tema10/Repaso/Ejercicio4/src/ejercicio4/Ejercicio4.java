@@ -32,7 +32,7 @@ public class Ejercicio4 {
     }
 
     private static void creadorLista() {
-        x = Integer.parseInt(JOptionPane.showInputDialog("Introduce la cantidad de alubnos"));
+        x = Integer.parseInt(JOptionPane.showInputDialog("Introduce la cantidad de alumnos"));
         posicion = new int [x];
         alumno = new String [x];
         calificacion = new String [x];
