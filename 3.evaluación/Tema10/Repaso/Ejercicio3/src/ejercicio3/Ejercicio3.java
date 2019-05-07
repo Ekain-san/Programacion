@@ -20,7 +20,7 @@ public class Ejercicio3 {
     private static String [] lista = new String [28];
     private static int x;
     private static int contador=0;
-    private static String texto;
+    private static String texto=" ";
     
     public static void main(String[] args) {
         rellenador();
