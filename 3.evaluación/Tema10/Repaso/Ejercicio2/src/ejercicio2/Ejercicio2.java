@@ -19,6 +19,7 @@ public class Ejercicio2 {
      * @param args the command line arguments
      */
     private static Integer[] lista;
+    private static Integer[] lista2;
     private static int x;
     private static Pattern pat;
     private static Matcher mat;
@@ -34,6 +35,7 @@ public class Ejercicio2 {
     private static void formador() {
         x = Integer.parseInt(JOptionPane.showInputDialog("Introduzca cuantos numeros desea que tenga la lista"));
         lista = new Integer[x];
+        lista2 = new Integer[x];
     }
 
     private static void rellenador() {
@@ -52,10 +54,11 @@ public class Ejercicio2 {
     }
 
     private static void seleccionador() {
-        mat =pat.matcher(lista[x].toString());
         for (x=0; x<lista.length;x++){
+            mat =pat.matcher(lista[x].toString());
             if (mat.matches()){
                 listaString = listaString + " " + lista[x];
+                lista2[x]=lista[x];
             }
         }
         JOptionPane.showMessageDialog(null, listaString);

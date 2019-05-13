@@ -23,6 +23,7 @@ public class Ejercicio1 {
     private static int y;
     private static int opcion;
     private static String listaString;
+    private static boolean seguir;
     
     public static void main(String[] args) {
         formarLista();
@@ -69,8 +70,17 @@ public class Ejercicio1 {
     }
 
     private static void enseñador() {
-        x = Integer.parseInt(JOptionPane.showInputDialog("Introduzca la posición del numero que desea sacar"));
-        JOptionPane.showMessageDialog(null,lista[x]);
+        do{ 
+            try{
+                x = Integer.parseInt(JOptionPane.showInputDialog("Introduzca la posición del numero que desea sacar"));
+                JOptionPane.showMessageDialog(null,lista[x]);
+                seguir = true;
+            }
+            catch(Exception e){
+                seguir = false; 
+            }
+            
+        }while(seguir=false);
     }
 
     private static void modificador() {
