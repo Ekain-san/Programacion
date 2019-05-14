@@ -49,10 +49,14 @@ public class Ejercicio6 {
     }
 
     private static void continuar() {
-        char opcion = JOptionPane.showInputDialog("Desea continuar\n S= sí      n=no").toLowerCase().charAt(0);
+        String opcion = JOptionPane.showInputDialog("Desea continuar "
+                                                  + "\n S= sí      n = no").toLowerCase();
         switch (opcion){
-            case 'n': seguir=false;
+            case "no": seguir = false;
+            case "n": seguir = false;
+                break;
             default: seguir = true;
+                break;
         }
     }
 
