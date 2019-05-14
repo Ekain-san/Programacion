@@ -31,6 +31,7 @@ public class Ejercicio14 {
     private static boolean valido;
     
     private static int x;
+    private static int y;
     private static String tipo;
     
     private static Persona per;
@@ -54,7 +55,6 @@ public class Ejercicio14 {
 
     private static void rellenar() {
         boolean seguir;
-        int x;
         
         do{
             try{
@@ -175,14 +175,58 @@ public class Ejercicio14 {
     }
 
     private static void eliminar() {
+        try{
+            dni = JOptionPane.showInputDialog("Introduzca DNI");
+            tipo = "DNI";
+            comprobador();
+        }
         
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "DNI no valido");
+        }
+        
+        for (x=0;x<lista.size();x++){
+            if(lista.get(x).getDni().equals(dni)){
+                lista.remove(x);
+                JOptionPane.showMessageDialog(null, "Persona borrada en la posición: " + x);
+            }
+        }
     }
 
     private static void ordenar() {
-        
+        for (x=0;x<lista.size();x++){
+            per = lista.get(x);
+            for(y=x+1;y<lista.size();y++){
+                if(lista.get(y).getApellidos().compareToIgnoreCase(per.getApellidos()) < 0)
+                    per = lista.get(y);
+            }
+            lista.set(x, per);
+        }
     }
 
     private static void mostrar() {
+        try{
+            dni = JOptionPane.showInputDialog("Introduzca DNI");
+            tipo = "DNI";
+            comprobador();
+        }
         
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "DNI no valido");
+        }
+        
+        for (x=0;x<lista.size()&&!lista.get(x).getDni().equals(dni);x++){
+            
+        }
+        
+        if(x==lista.size())
+            JOptionPane.showMessageDialog(null, "DNI no encontrado");
+        else
+            JOptionPane.showMessageDialog(null, "DNI: " + lista.get(x).getDni()
+                                              + "\n Nombre: " + lista.get(x).getNombre()
+                                              + "\n Apellidos: " + lista.get(x).getApellidos()
+                                              + "\n Sexo: " + lista.get(x).getSexo()
+                                              + "\n Edad: " + lista.get(x).getEdad()
+                                              + "\n Peso: " + lista.get(x).getPeso());
     }
 }
