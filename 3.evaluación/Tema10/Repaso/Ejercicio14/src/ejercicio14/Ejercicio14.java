@@ -30,15 +30,18 @@ public class Ejercicio14 {
     private static Double peso;
     private static boolean valido;
     
+    private static int x;
+    private static String tipo;
+    
     private static Persona per;
     
     private static Matcher mat;
     private static Pattern pat = Pattern.compile("^[0-9]{9}[A-Z]$");
     private static Pattern pat2 = Pattern.compile("^[A-Z][a-z]*$");
     private static Pattern pat3 = Pattern.compile("^[A-Z][ ]+[A-Z]+[a-z]*[A-Z]+[a-z]*$");
-    private static Pattern pat4 = Pattern.compile("^$");
+    private static Pattern pat4 = Pattern.compile("^)(hombre|mujer)??{hm}?$");
     private static Pattern pat5 = Pattern.compile("^[1]?[0-9]*$");
-    private static Pattern pat6 = Pattern.compile("^[0-2],[0-9]{2}$");
+    private static Pattern pat6 = Pattern.compile("^[1]?[0-9][0-9],[0-9]{2}$");
     
     private static int opcion;
     private static String listaString;
@@ -54,71 +57,79 @@ public class Ejercicio14 {
         int x;
         
         do{
-           dni = JOptionPane.showInputDialog("Introduzca DNI");
-           nombre = JOptionPane.showInputDialog("Introduzca nombre");
-           apellidos = JOptionPane.showInputDialog("Introduzca apellidos");
-           sexo = JOptionPane.showInputDialog("Introduzca sexo");
-           edad = Integer.parseInt(JOptionPane.showInputDialog ("Introduzca edad"));
-           peso = Double.parseDouble(JOptionPane.showInputDialog ("Introduzca peso"
-                                                                + "\n En kilogramos"));
-           comprobador();
-           if (valido = true){
+            try{
+                dni = JOptionPane.showInputDialog("Introduzca DNI");
+                tipo = "DNI";
+                comprobador();
+                
+                nombre = JOptionPane.showInputDialog("Introduzca nombre");
+                tipo = "nombre";
+                comprobador();
+                
+                apellidos = JOptionPane.showInputDialog("Introduzca apellidos");
+                tipo = "apellidos";
+                comprobador();
+                
+                sexo = JOptionPane.showInputDialog("Introduzca sexo"
+                                                 + "sólo se puede hombre o mujer, o h o m").toLowerCase();
+                tipo = "sexo";
+                comprobador();
+                
+                edad = Integer.parseInt(JOptionPane.showInputDialog ("Introduzca edad"));
+                tipo = "edad";
+                comprobador();
+                
+                peso = Double.parseDouble(JOptionPane.showInputDialog ("Introduzca peso"
+                                                                     + "\n En kilogramos '..,..' "));
+                tipo = "peso";
+                comprobador();
+                
                 per = new Persona (dni, nombre, apellidos, sexo, edad, peso);
                 lista.add(per);
                 x = JOptionPane.showConfirmDialog(null, "Desea añadir otra persona");
                 switch(x){
-                    
+                    case 0: seguir = true;
+                        break;
+                    default: seguir = false;
+                        break;
                 }
-           }
-           
-           else
-           {    
+                
+            }
+            
+            catch(Exception e){
                JOptionPane.showMessageDialog(null, "Datos no validos. Introduzcalos de nuevo");
-               seguir = true;
-           }
+               seguir = true; 
+            }
            
         }while (seguir = true);
     }
 
-    private static void comprobador() {
-        try{
-            mat = pat.matcher(dni);
-            if (mat.matches()){
-                mat = pat2.matcher(nombre);
-                if (mat.matches()){
-                    mat = pat3.matcher(apellidos);
-                    if (mat.matches()){ 
-                        mat = pat4.matcher(sexo);
-                        if (mat.matches()){
-                            mat = pat5.matcher(edad.toString());
-                            if (mat.matches()){
-                                mat = pat6.matcher(peso.toString());
-                                if (mat.matches()){
-                                    valido = true;
-                                }
-                                else
-                                    throw new datoSinSentido();
-                            }
-                            else
-                                throw new datoSinSentido();
-                        }
-                        else
-                           throw new datoSinSentido();
-                    }
-                    else
-                       throw new datoSinSentido();
-                 }
-                else
-                    throw new datoSinSentido();
-            }
-            else
+    private static void comprobador() throws Exception {
+        switch (tipo.toLowerCase()){
+            case "dni":mat = pat.matcher(dni);
+            if (mat.matches()==false)
+                throw new datoSinSentido();
+                   
+            case "nombre": mat = pat2.matcher(nombre);
+            if (mat.matches()==false)
+                throw new datoSinSentido();
+            
+            case "apellidos": mat = pat3.matcher(apellidos);
+            if (mat.matches()==false)
+                throw new datoSinSentido();
+            
+            case "sexo": mat = pat4.matcher(sexo);
+            if (mat.matches()==false)
+                throw new datoSinSentido();
+            
+            case "edad": mat = pat5.matcher(edad.toString());
+            if (mat.matches()==false)
+                throw new datoSinSentido();
+            
+            case "peso": mat = pat6.matcher(peso.toString());
+            if (mat.matches()==false)
                 throw new datoSinSentido();
         }
-        
-        catch(Exception e){
-            valido = false;
-        }
-        
     }
     
     private static void seleccionar() {
@@ -143,7 +154,24 @@ public class Ejercicio14 {
     }    
 
     private static void buscar() {
+        try{
+            dni = JOptionPane.showInputDialog("Introduzca DNI");
+            tipo = "DNI";
+            comprobador();
+        }
         
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "DNI no valido");
+        }
+        
+        for (x=0;x<lista.size()&&!lista.get(x).getDni().equals(dni);x++){
+            
+        }
+        
+        if(x==lista.size())
+            JOptionPane.showMessageDialog(null, "DNI no encontrado");
+        else
+            JOptionPane.showMessageDialog(null, "DNI encontrado");
     }
 
     private static void eliminar() {

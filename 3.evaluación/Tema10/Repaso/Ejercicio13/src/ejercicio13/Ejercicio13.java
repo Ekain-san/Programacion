@@ -19,7 +19,7 @@ public class Ejercicio13 {
     /**
      * @param args the command line arguments
      */
-    private static Pattern pat = Pattern.compile("^[C]+[.]+[A-z][a-z]*/[1]?[1-9]/[1]?[1-9][A-Z]$");
+    private static Pattern pat = Pattern.compile("^(C.)?[ ]?[A-z][a-z]*/[1]?[1-9]/[1]?[1-9][A-Z]$");
     private static Pattern pat2 = Pattern.compile("^[A-z][a-z]*$");
     private static Pattern pat3 = Pattern.compile("[0-9][5]");
     private static Matcher mat;
