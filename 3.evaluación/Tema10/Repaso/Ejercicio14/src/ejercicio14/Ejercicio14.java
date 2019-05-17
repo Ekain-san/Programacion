@@ -150,6 +150,8 @@ public class Ejercicio14 {
                 break;
             case 4: mostrar();
                 break;
+            default: JOptionPane.showMessageDialog(null, "numero no valido");
+                break;
         }
     }    
 
