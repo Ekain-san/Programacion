@@ -57,6 +57,7 @@ public class Ejercicio16 {
             cola.remove(x);
             
             total = total + precio;
+            
         }
     }
     
