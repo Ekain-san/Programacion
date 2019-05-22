@@ -26,8 +26,8 @@ public class Ejercicio19 {
     private static ArrayList <Persona> personas;
     
     public static void main(String[] args) {
-        vr = new ventanaRellenar();
-        vp = new ventanaPrincipal();
+        crearVentanas();
+        rellenar();
         
     }
 
@@ -43,9 +43,14 @@ public class Ejercicio19 {
         
     }
 
-    public static void rellenar(String dni, String nombre, String apellidos, String sexo, Integer edad, Double peso) {
+    public static void crearClase(String dni, String nombre, String apellidos, String sexo, Integer edad, Double peso) {
         persona = new Persona (dni, nombre, apellidos, sexo, edad, peso);
         personas.add(persona);
+    }
+
+    private static void crearVentanas() {
+        vr = new ventanaRellenar();
+        vp = new ventanaPrincipal();
     }
     
 }
