@@ -5,6 +5,10 @@
  */
 package ejercicio12;
 
+import excepcion.datoSinSentido;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author Asus
@@ -14,8 +18,22 @@ public class Ejercicio12 {
     /**
      * @param args the command line arguments
      */
+    private static Matcher mat;
+    private static Pattern pat = Pattern.compile("^[A-z][a-z]*$");
+    
+    private static String nombre;
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        try{
+            mat = pat.matcher(nombre);
+            if (!mat.matches()){
+                throw new datoSinSentido();
+            }
+        }
+        
+        catch(Exception e){
+            
+        }
     }
     
 }

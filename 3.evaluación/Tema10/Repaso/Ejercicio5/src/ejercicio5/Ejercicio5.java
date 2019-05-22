@@ -43,7 +43,7 @@ public class Ejercicio5 {
                 JOptionPane.showMessageDialog(null, "Valor no valido");
                 seguir = false;
             }
-        }while (seguir = false);
+        }while (seguir == false);
         lista = new int [x];
     }
 
@@ -62,7 +62,7 @@ public class Ejercicio5 {
                 JOptionPane.showMessageDialog(null, "Valor no valido");
                 seguir = false;
             }
-        }while (seguir = false);
+        }while (seguir == false);
     }
 
     private static void ejecutar() {
@@ -96,7 +96,7 @@ public class Ejercicio5 {
                 JOptionPane.showMessageDialog(null, "Valor no valido");
                 seguir = false;
             }
-        }while (seguir = false);
+        }while (seguir == false);
         Arrays.fill(lista, x);
     }
 

@@ -35,7 +35,8 @@ public class Ejercicio16 {
 
     private static void rellenar() {
         for(cantidad = 0; cantidad < x; cantidad++){
-            persona.setEdad(y);
+            int edad = y;
+            persona = new Persona (edad);
             cola.add(persona);
         }
     }
@@ -46,11 +47,11 @@ public class Ejercicio16 {
                 precio = 1;
             }
             
-            if(10<cola.get(x).getEdad()&&cola.get(x).getEdad()<18){
+            else if(10<cola.get(x).getEdad()&&cola.get(x).getEdad()<18){
                 precio = 2.5;
             }
             
-            if(17<cola.get(x).getEdad()){
+            else if(17<cola.get(x).getEdad()){
                 precio = 5;
             }
             
