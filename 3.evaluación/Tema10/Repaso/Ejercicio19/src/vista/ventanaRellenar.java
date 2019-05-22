@@ -248,7 +248,7 @@ public class ventanaRellenar extends javax.swing.JFrame {
     }//GEN-LAST:event_EdadActionPerformed
 
     private void SiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiActionPerformed
-        Ejercicio19.vaciar();
+        vaciar();
     }//GEN-LAST:event_SiActionPerformed
 
     private void DniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DniFocusLost
@@ -330,7 +330,7 @@ public class ventanaRellenar extends javax.swing.JFrame {
             tipo = "apellidos";
             validador();
                 
-            sexo = Nombre.getText().toLowerCase();
+            sexo = Sexo.getText().toLowerCase();
             tipo = "sexo";
             validador();
             
@@ -347,7 +347,7 @@ public class ventanaRellenar extends javax.swing.JFrame {
         
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "dato no valido");
-            Ejercicio19.vaciar();
+            vaciar();
         }
     }
 
@@ -377,5 +377,14 @@ public class ventanaRellenar extends javax.swing.JFrame {
             if (mat.matches()==false)
                 throw new datoSinSentido();
         }  
+    }
+
+    private void vaciar() {
+        Dni.setText(null);
+        Nombre.setText(null);
+        Apellidos.setText(null);
+        Sexo.setText(null);
+        Edad.setText(null);
+        Peso.setText(null);
     }
 }

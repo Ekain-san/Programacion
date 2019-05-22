@@ -24,6 +24,7 @@ public class Ejercicio19 {
     private static Persona persona;
     
     private static ArrayList <Persona> personas;
+    private static int x;
     
     public static void main(String[] args) {
         crearVentanas();
@@ -36,11 +37,8 @@ public class Ejercicio19 {
     }
 
     public static void paginaPrincipal() {
-
-    }
-
-    public static void vaciar() {
-        
+        vr.setVisible(false);
+        vp.setVisible(true);
     }
 
     public static void crearClase(String dni, String nombre, String apellidos, String sexo, Integer edad, Double peso) {
@@ -48,9 +46,17 @@ public class Ejercicio19 {
         personas.add(persona);
     }
 
+<<<<<<< Updated upstream
     private static void crearVentanas() {
         vr = new ventanaRellenar();
         vp = new ventanaPrincipal();
+=======
+    public static void eliminar(String dni) {
+        for (x=0;x<personas.size();x++){
+            if(dni.equals(personas.get(x).getDni()))
+                personas.remove(x);
+        }
+>>>>>>> Stashed changes
     }
     
 }
