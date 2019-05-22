@@ -101,6 +101,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar una persona"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EUPActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="OPA">
       <Properties>

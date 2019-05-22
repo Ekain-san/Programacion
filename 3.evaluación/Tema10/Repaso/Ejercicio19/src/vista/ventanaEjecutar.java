@@ -5,6 +5,12 @@
  */
 package vista;
 
+import ejercicio19.Ejercicio19;
+import excepcion.datoSinSentido;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 1gdaw11
@@ -16,6 +22,7 @@ public class ventanaEjecutar extends javax.swing.JFrame {
      */
     public ventanaEjecutar() {
         initComponents();
+        Dato.setVisible(false);
     }
 
     /**
@@ -27,21 +34,71 @@ public class ventanaEjecutar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        Dni = new javax.swing.JTextField();
+        Dato = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("Ejecutar");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Introduzca DNI");
+
+        Dni.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                DniFocusLost(evt);
+            }
+        });
+        Dni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DniActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Dni, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(Dato, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(107, 107, 107)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Dato, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void DniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DniActionPerformed
+
+    private void DniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DniFocusLost
+        verificar();
+    }//GEN-LAST:event_DniFocusLost
 
     /**
      * @param args the command line arguments
@@ -77,7 +134,53 @@ public class ventanaEjecutar extends javax.swing.JFrame {
             }
         });
     }
+    private static Matcher mat;
+    private static Pattern pat = Pattern.compile("^[0-9]{9}[A-Z]$");
+    
+    private String dni;
+    private String clase;
+    
+    public void establecer(String tipo) {
+        switch (tipo){
+             case "ordenar": Dni.setVisible(false);
+                break;
+                
+             default: clase = tipo;
+                break;
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Dato;
+    private javax.swing.JTextField Dni;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
+
+    private void verificar() {
+        try{
+            dni = Dni.getText();
+            mat = pat.matcher(dni);
+            if(!mat.matches())
+                throw new datoSinSentido();
+            ejecutar();
+        }
+        
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Dato no valido");
+        }
+    }
+
+    private void ejecutar() {
+        switch (clase){
+            case "buscar": Ejercicio19.buscar(dni);
+            case "mostrar":Ejercicio19.mostrar(dni);
+            case "eliminar": Ejercicio19.eliminar(dni);
+        }
+    }
+
+    public void rellenar(String texto) {
+        Dato.setText(texto);
+        Dato.setVisible(true);
+    }
 }

@@ -5,6 +5,8 @@
  */
 package vista;
 
+import ejercicio19.Ejercicio19;
+
 /**
  *
  * @author Asus
@@ -51,6 +53,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         });
 
         EUP.setText("Eliminar una persona");
+        EUP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EUPActionPerformed(evt);
+            }
+        });
 
         OPA.setText("Ordenar por apellidos");
         OPA.addActionListener(new java.awt.event.ActionListener() {
@@ -107,18 +114,26 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private String tipo;
     private void BPDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BPDActionPerformed
-        // TODO add your handling code here:
+        tipo = "buscar";
+        Ejercicio19.ejecutar(tipo);
     }//GEN-LAST:event_BPDActionPerformed
 
     private void OPAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OPAActionPerformed
-        // TODO add your handling code here:
+        tipo = "ordenar";
+        Ejercicio19.ejecutar(tipo);
     }//GEN-LAST:event_OPAActionPerformed
 
     private void MTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MTActionPerformed
-        // TODO add your handling code here:
+        tipo = "mostrar";
+        Ejercicio19.ejecutar(tipo);
     }//GEN-LAST:event_MTActionPerformed
+
+    private void EUPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EUPActionPerformed
+        tipo = "eliminar";
+        Ejercicio19.ejecutar(tipo);
+    }//GEN-LAST:event_EUPActionPerformed
 
     /**
      * @param args the command line arguments
